@@ -15,5 +15,20 @@ Order Cancellation: Users have the option to cancel their orders within specifie
 Product Filters: Advanced filters allow users to easily find products
 
 <br>
-1: Clone the Repository 
-2: 
+1: Clone the Repository  <br>
+
+2: Acivate Venv : venv\Scripts\activate
+
+<br>
+3: pip install -r requirements.txt
+
+<br>
+4: apply migrations python manage.py migrations 
+  python manage.py migrate
+
+<br>
+5: run the project: python manage.py runserver
+
+
+
+
