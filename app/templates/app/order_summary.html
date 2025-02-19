@@ -1,0 +1,26 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Order Summary{% endblock title %}
+{% block main-content %}
+<div class="container my-5">
+    <h1 class="text-center mb-5">Order Summary</h1>
+    <div class="row">
+        <div class="col-sm-8">
+            <h3>Products</h3>
+            <ul class="list-group">
+                {% for product in products %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    {{ product.title }} <span>Rs. {{ product.discounted_price }}</span>
+                </li>
+                {% endfor %}
+            </ul>
+            <h4 class="mt-4">Total Amount: Rs. {{ total_amount }}</h4>
+        </div>
+        <div class="col-sm-4">
+            <h3>Payment QR Code</h3>
+            <img src="{{ qr_code_url }}" alt="QR Code" class="img-fluid">
+            <p>Scan this QR code to pay.</p>
+        </div>
+    </div>
+</div>
+{% endblock main-content %}

@@ -1,0 +1,40 @@
+    {% extends 'app/base.html' %}
+    {% load static %}
+    {% block title %}Checkout{% endblock title %}
+    {% block main-content %}
+    <div class="container block-main">
+        <h1 class="text-center mb-5">Checkout</h1>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-body checkout-ps">
+                        <h3 class="">Your Items</h3>
+                        {% for cart in carts %}
+                        <hr class="text-muted">
+                        <div class="row">
+                            <div class="col-sm-3 text-center">
+                                <img src="{{ cart.product.product_image.url }}" alt="" class="img-fluid img-thumbnail shadow-sm" height="150" width="150">
+                            </div>
+                            <div class="col-sm-9">
+                                <h5>{{ cart.product.title }}</h5>
+                                <p class="mb-2 text-muted small">{{ cart.product.description }}</p>
+                                <p>Quantity: {{ cart.quantity }}</p>
+                                <p><strong>Price: Rs. {{ cart.product.discounted_price }}</strong></p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <hr>
+                        <h4 class="text-right">Total Amount: Rs. {{ total_amount }}</h4>
+                        <form method="POST" action="{% url 'place_order' %}">
+                            {% csrf_token %}
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary">Place Order</button>
+                            </div>
+                        </form>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock main-content %}

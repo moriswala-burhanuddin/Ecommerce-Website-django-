@@ -1,0 +1,67 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block title %}Address{% endblock %}
+
+{% block main-content %}
+<style>
+  
+</style>
+
+<div class="container block-main">
+  <div class="row">
+    <h3 class="text-center">Welcome <span class="text-capitalize bg-warning p-2">{{ request.user }}</span></h3>
+    <div class="col-sm-2 sidebar-p">
+      <ul class="list-unstyled">
+        <li class="d-grid">
+          <a href="{% url 'profile' %}" class="btn ">Profile</a>
+        </li>
+        <li class="d-grid">
+          <a href="{% url 'address' %}" class="btn bg-light text-dark {% if active == 'address' %}active{% endif %}">Address</a>
+        </li>
+      </ul>
+    </div>
+    <div class="col-sm-9 offset-sm-1">
+      <div class="row">
+        {% if add %}
+          {% for ad in add %}
+          <div class="col-sm-6">
+            <div class="card address ">
+              <div class="card-body">
+                <h3 class="text-warning">Address</h3>
+                
+                <p class="lab"><strong>Name:</strong> {{ ad.name }}</p>
+                <p class="lab"><strong>Locality:</strong> {{ ad.locality }}</p>
+                <p class="lab"><strong>City:</strong> {{ ad.city }}</p>
+                <p class="lab"><strong>State:</strong> {{ ad.state }}</p>
+                <p class="lab"><strong>Pin Code:</strong> {{ ad.zipcode }}</p>
+                <p class="lab"><strong>Phone Number:</strong> {{ ad.phone_number }}</p>
+
+                <!-- Remove Email, Date of Birth, Profile Picture, and Bio fields -->
+                <!-- These fields are no longer relevant -->
+                
+                <!-- Edit and Delete Buttons (Optional) -->
+                <a href="{% url 'edit_address' ad.id %}" class="btn btn-warning btn-edit">Edit</a>
+
+                <a href="{% url 'delete_address' ad.id %}" class="btn btn-danger btn-delete">Delete</a>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        {% else %}
+          <div class="col-sm-12">
+            <div class="alert alert-info">
+              <strong>No addresses found!</strong> You don't have any saved addresses yet.
+            </div>
+          </div>
+        {% endif %}
+      </div>
+
+      
+    
+    </div>
+  </div>
+</div>
+
+<script src="https://unpkg.com/scrollreveal"></script>
+{% endblock main-content %}

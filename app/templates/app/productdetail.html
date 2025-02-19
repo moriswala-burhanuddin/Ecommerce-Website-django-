@@ -1,0 +1,139 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block title %}Product Detail{% endblock title %}
+
+{% block main-content %}
+<div class="container-fluid-lg p-2 hero-section block-main">
+    <img src="{% static 'images/hoodiedispic.webp' %}" class="w-100" alt="Image 3">
+</div>
+
+<div class="product-container">
+    <div class="product-detail">
+        <div class="image-container">
+            <!-- Container to hold both curtain and product image -->
+            <div class="product-image-container">
+                <!-- Curtain div that starts off with a white background -->
+                <div id="curtain" class="curtain">
+                    <!-- Left and right parts of the curtain for the opening effect -->
+                    <div class="left"></div>
+                    <div class="right"></div>
+                </div>
+        
+                <!-- The actual Product Image -->
+                <img src="{{ product.product_image.url }}" alt="{{ product.title }}" class="product-image" id="productImage">
+            </div>
+        </div>
+        
+        <div class="details">
+            <h2 class="product-title text-warning">{{ product.title|upper }}</h2>
+            <div class="pricing">
+                <span class="current-price">Rs. {{ product.discounted_price }}</span>
+                <span class="original-price" style="text-decoration: line-through; color: red;">Rs.{{ product.selling_price }}</span>
+                <a href="#" class="rating text-decoration-none float-end">
+                    <i><img src="{% static 'images/star.png' %}" alt=""></i>4.6/7.8</a>
+                <p class="text-success"><strong><i><img src="{% static 'images/shopping-cart.png' %}" alt="shopping cart"></i>165 people bought this in last 7 days</strong></p>
+            </div>
+
+            <div class="buttons">
+                <form method="POST" action="{% url 'add_to_cart' product.id %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="product_id" value="{{ product.id }}">
+                    <label for="size">Select Size:</label>
+                    <select name="size" id="size">
+                        {% for size in sizes %}
+                            <option value="{{ size }}">{{ size }}</option>
+                        {% endfor %}
+                    </select>
+                    <br><br>
+                    <button type="submit" class=" btn-primarya addtocartbutton">Add to Cart</button>    
+                </form>
+
+                <a href="{% url 'buy-now' %}?prod_id={{ product.id }}" class=" buy-now">Buy Now</a>
+            </div>
+            <p class="product-description">{{ product.description }}</p>
+        </div>
+    </div>
+
+    <div class="reviews-section">
+        <h3>User Reviews</h3>
+        <div class="reviews-container">
+            {% for review in reviews %}
+            <div class="reviewblock">
+                <div class="revimage p-2 ">
+                    <span class="display-6">{{ review.user_name|slice:":1"|upper }}</span>
+                </div>
+                <div class="review-content">
+                    <p class="">
+                        <span class="user-name text-muted display-6">{{ review.user_name }}</span>
+                        <span class="location">{{ review.location }}</span>
+                    </p>
+                    
+                    <p class="reviewp">{{ review.content }}</p>
+                </div>
+            </div>
+            {% empty %}
+                <p>No reviews available.</p>
+            {% endfor %}
+        </div>
+    
+        <h4>Submit Your Review</h4>
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="user_name" class="form-label text-light">Your Name</label>
+                <input type="text" name="user_name" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="content" class="form-label text-light">Your Review</label>
+                <textarea name="content" class="form-control" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit Review</button>
+        </form>
+    </div>
+
+    <!-- Related Products Section -->
+    <div class="suggested-products">
+        <h3>Suggested Products</h3>
+        <div class="container">
+            <div class="row">
+                {% for suggested_product in suggested_products %}
+                    <div class="col-6 col-md-4 col-lg-3 mb-4">
+                        <div class="card h-100">
+                            <img src="{{ suggested_product.product_image.url }}" class="card-img-top" alt="{{ suggested_product.title }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ suggested_product.title }}</h5>
+                                <p class="card-text">Rs. {{ suggested_product.discounted_price }} <span class="text-muted" style="text-decoration: line-through;">Rs. {{ suggested_product.selling_price }}</span></p>
+                                <a href="{% url 'product-detail' suggested_product.id %}" class="btn btn-primary">View Product</a>
+                            </div>
+                        </div>
+                    </div>
+                {% empty %}
+                    <p>No suggested products available.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://unpkg.com/scrollreveal"></script>
+
+<script>
+    // Get the curtain and product image elements
+    const curtain = document.getElementById('curtain');
+    const productImage = document.getElementById('productImage');
+
+    // Add click event listener to the image
+    productImage.addEventListener('click', function() {
+        // Add 'open' class to curtain to trigger the opening animation
+        curtain.classList.add('open');
+
+        // Optionally, hide the curtain after the animation finishes (if needed)
+        setTimeout(() => {
+            curtain.style.display = 'none'; // Hide curtain after animation ends
+        }, 1500); // Match the duration of the animation (1.5s)
+    });
+</script>
+
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'app/base.html' %}
+{% block title %}Confirm Payment{% endblock title %}
+{% block main-content %}
+<div class="container block-main">
+    <h1 class="text-center mb-5">Confirm Your Payment</h1>
+    <form method="POST" action="{% url 'confirm_payment' order_id=order_id %}" id="payment-form">
+
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="transaction_id">Transaction ID</label>
+            <input type="text" class="form-control" id="transaction_id" name="transaction_id" required>
+        </div>
+        <input type="hidden" name="order_id" value="{{ order_id }}">
+        <button type="submit" class="btn btn-success">Submit Confirmation</button>
+    </form>
+</div>
+<script src="https://unpkg.com/scrollreveal"></script>
+{% endblock main-content %}

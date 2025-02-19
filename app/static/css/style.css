@@ -1,0 +1,1675 @@
+:root {
+    --primary-color: #007bff;
+    --secondary-color: #28a745;
+    --dark-color: #343a40;
+    --light-color: #f8f9fa;
+    --text-color: #343a40;
+    --error-color: #dc3545;
+    --hover-bg-color: #e2e6ea;
+    --hover-color: #0056b3;
+    --shadow: rgba(0, 0, 0, 0.1);
+    --border-color-light: #d1d1d1;
+    --border-color-dark: #333;
+}
+
+/* General Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--dark-color);
+    color: var(--light-color);
+    margin: 0; /* Reset default margins */
+}
+
+/* Custom Scrollbar */
+html::-webkit-scrollbar {
+    width: 0.5rem;
+}
+html::-webkit-scrollbar-track {
+    background: transparent;
+}
+html::-webkit-scrollbar-thumb {
+    background: var(--error-color);
+    border-radius: 6rem;
+}
+
+/* Layout Utilities */
+.container {
+    margin-top: 20px;
+}
+
+.block-main {
+    margin-top: 130px;
+}
+
+.logo {
+    margin-right: 50px;
+    
+}
+
+/* Borders */
+.B {
+    border-right: 1px solid #ffffff;
+    color: rgb(254, 251, 251);
+}
+.Urhani {
+    border-bottom: 1px solid #f8f8f8;
+    color: rgb(245, 245, 245);
+}
+.Bf {
+    border-right: 1px solid #999;
+    color: #999;
+}
+.Urhanif {
+    border-bottom: 1px solid #999;
+    color: #a4a2a2;
+}
+
+/* Top Bar */
+.topbar {
+    padding: 10px 0;
+    margin-bottom: 80px;
+}
+
+.top-info small,
+.top-link a {
+    color: #ffffff;
+}
+
+/* Navbar */
+.navbar {
+    box-shadow: 0 2px 5px var(--shadow);
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.nav-link {
+    color: #e8e8e8 !important;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: #d4d4d4 !important;
+}
+
+.dropdown-menu {
+    background-color: #343a40;
+}
+
+.dropdown-item {
+    color: #dcdcdc;
+}
+
+.dropdown-item:hover {
+    background-color: var(--light-color);
+    color: rgb(21, 21, 21);
+}
+
+/* Search Bar */
+.form-control {
+    border-radius: 20px;
+    border: 1px solid #ced4da;
+    transition: border-color 0.3s;
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+}
+
+.btn-primary {
+    border-radius: 20px;
+}
+
+/* Footer */
+footer {
+    background-color: #282d32; 
+    color: var(--light-color);
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+   
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    
+}
+
+.footer-link {
+    color: var(--light-color);
+    text-decoration: none;
+    margin: 0 15px;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.footer-link:hover {
+    color: rgb(110, 110, 110);
+}
+
+.footer-link::after {
+    content: "";
+    display: block;
+    height: 2px;
+    background: #f8f9fa;
+    width: 0;
+    transition: width 0.3s ease;
+    margin: auto;
+}
+
+.footer-link:hover::after {
+    width: 100%;
+}
+
+.burhan {
+    border-radius: 50%;
+    background-color: #ffffff;
+    color: var(--text-color);
+    font-size: 1.5rem;
+    padding: 10px;
+    display: inline-block;
+}
+
+.payment-icon {
+    height: 20px;
+    margin-top: 10px;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .footer-links {
+        flex-direction: column;
+    }
+    .footer-link {
+        margin: 5px 0;
+    }
+    .navbar-brand {
+        font-size: 1.25rem; /* Adjust brand size for smaller screens */
+    }
+    .nav-link {
+        font-size: 0.9rem; /* Adjust link size */
+    }
+}
+
+
+/* Carousel */
+.owl-carousel .item {
+    transition: transform 0.5s ease;
+}
+
+.owl-carousel .item:hover {
+    transform: scale(1.05);
+}
+
+/* Badge */
+.badge {
+    background-color: var(--error-color);
+    font-size: 0.8rem;
+    border-radius: 10px;
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 576px) {
+    .navbar {
+        padding: 10px 0;
+    }
+
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+
+    .topbar {
+        display: none; /* Hide top bar on smaller screens */
+    }
+
+    .form-control {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .navbar-nav {
+        margin-top: 10px;
+        flex-direction: column;
+    }
+}
+
+@media (min-width: 577px) and (max-width: 768px) {
+    .navbar {
+        padding: 15px 0;
+    }
+
+    .navbar-brand {
+        font-size: 1.3rem;
+    }
+}
+
+@media (min-width: 769px) {
+    .navbar-collapse {
+        justify-content: space-between;
+    }
+
+    .topbar {
+        display: block; /* Show top bar on larger screens */
+    }
+    .block-main{
+        margin-top: 120px;
+    }
+}
+
+/* Button Styles */
+button.dropdown-item {
+    transition: background-color 0.3s ease;
+}
+
+button.dropdown-item:hover {
+    background-color: var(--hover-bg-color);
+    color: var(--primary-color);
+}
+
+/* Banner Slider Styles */
+.banner-slider {
+    position: relative;
+    overflow: hidden;
+    /* height: 500px;          Enhanced height for visual impact */
+    margin-top: 130px;
+}
+
+.carousel-inner {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item {
+    min-width: 100%;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Full coverage without distortion */
+}
+
+
+.banner-slider{
+    margin-top: 130px;
+}
+
+/* New Section Styling for Curtain Image with Celebrating GIF */
+.curtain-image-section {
+    position: relative;
+    width: 100%;
+    height: 500px; /* Adjust height as per your preference */
+    margin: 30px 0;
+}
+
+.curtain-image-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.celebrating-gif {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--dark-color);
+    opacity: 0.5; /* Adjust opacity to see the curtain image clearly */
+    z-index: 1;
+}
+
+.gif-background {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.curtain-image-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    text-align: center;
+}
+
+.curtain-image {
+    width: 100%;
+    height: auto;
+    max-width: 600px; /* You can control the size of the curtain image */
+    margin-bottom: 20px;
+    border-radius: 15px;
+}
+
+.opening-text {
+    font-size: 36px;
+    color: var(--light-color);
+    font-weight: bold;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    margin-top: 10px;
+    font-family: 'Arial', sans-serif;
+}
+    
+
+/* General Video Banner Block Styles */
+.video-banner-block {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Full height of the viewport */
+    overflow: hidden;
+   /* Fallback background color */
+}
+
+/* Video container that holds the video */
+.video-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1; /* Ensure the video stays at the back */
+}
+
+/* Video styling */
+.video-background {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Makes sure the video covers the entire space */
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* Optional: Add a dark overlay for content visibility */
+.video-banner-block::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+   
+    z-index: 2; /* Ensure overlay is above the video */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .video-banner-block {
+        height: 70vh; /* Adjust height for smaller screens */
+        
+    }
+}
+
+@media (max-width: 480px) {
+    .video-banner-block {
+        height: 50vh; /* Further adjust for very small screens */
+    }
+}
+
+
+/* Advertisement Video Section */
+.advertisement-video-section {
+    position: relative;
+    width: 100%;
+    height: 450px;  /* Adjust height as needed */
+    margin-top: 100px; /* Margin from the content above */
+    overflow: hidden;
+    border-radius: 10px;  /* Rounded corners */
+}
+
+/* Container for the video advertisement */
+.advertisement-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* Styling for the advertisement video itself */
+.advertisement-video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;  /* Ensure the full video is shown without cropping */
+}
+
+/* Controls Container (holding mute/unmute and play/pause buttons) */
+.controls-container {
+    position: absolute;
+    top: 200px;  /* Position it just outside the video container */
+    left: 50%;
+    transform: translateX(-50%);  /* Center the buttons horizontally */
+    display: flex;
+    gap: 70px;  /* Space between buttons */
+    z-index: 10;
+}
+
+/* Mute/Unmute Button */
+#advertisement-mute-btn,
+#play-pause-btn {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+    opacity: 0.7;
+    
+}
+
+#advertisement-mute-btn:hover,
+#play-pause-btn:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Play/Pause Button */
+#play-pause-btn {
+    padding: 10px 20px;
+}
+
+/* Responsive Design for Smaller Screens */
+@media (max-width: 768px) {
+    .advertisement-video-section {
+        height: 250px;  /* Adjust height for smaller screens */
+    }
+
+    #advertisement-mute-btn, #play-pause-btn {
+        font-size: 12px;  /* Smaller buttons on mobile */
+        padding: 6px 12px;
+    }
+}
+
+
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 4px;
+}
+
+.smallscreen {
+    background-color: darkslategrey;
+    padding: 10px;
+}
+
+/* Navigation Controls */
+.carousel-control-prev,
+.carousel-control-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.8);
+    border: none;
+    border-radius: 50%;
+    padding: 15px;
+    cursor: pointer;
+    z-index: 10;
+    box-shadow: 0 4px 15px var(--shadow);
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+    background: rgba(255, 255, 255, 1);
+}
+
+/* Live Sale Section */
+.live-sale {
+    background: var(--secondary-color);
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+    border-radius: 10px;
+    margin: 20px 10px;
+    box-shadow: 0 4px 15px var(--shadow);
+}
+
+.live-sale h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.live-sale p {
+    font-size: 1.2rem;
+}
+
+.small-advertisement {
+    position: relative;
+    /* Background color */
+    padding: 10px;
+    border: 1px solid #dee2e6;  
+    border-radius: 5px;
+    margin-top: 20px; /* Space above the ad */
+    margin-bottom: 100px;
+    width: 100%; /* Adjust as needed */
+    text-align: center; /* Center the content inside */
+}
+
+.ad-image {
+    max-width: 100%; /* Responsive */
+    height: auto;
+}
+
+.close-button {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    background: #dc3545;
+    border: none;
+    font-size: 40px;
+    cursor: pointer;
+    color: white; /* Bootstrap danger color */
+    border: 2px solid white;
+}
+
+/* .product container settings */
+.product {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Auto-adjusting columns */
+    gap: 20px;
+    padding: 20px;
+    width: 100%; /* Ensure it takes up full width */
+    box-sizing: border-box; /* Include padding and border in the element's total width */
+    margin: 0; /* Remove any default margin from the parent container */
+}
+
+/* .parda div settings */
+.parda {
+    z-index: 10000;
+    position: absolute;
+    top: 0;
+    left: 0; /* Ensure it aligns to the left side */
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 1.5rem;
+    opacity: 0; /* Initially hidden */
+    transform: translateY(-100%); /* Positioned above the product */
+    transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth transition */
+}
+
+/* Oversized T-Shirts - Pink parda background */
+.OversizedT .parda {
+    background-color: rgba(237, 17, 197, 0.7); /* Semi-transparent pink */
+}
+
+/* Summer T-Shirts - Blue parda background */
+.SummerT .parda {
+    background-color: rgba(30, 144, 255, 0.7); /* Semi-transparent blue */
+}
+
+/* Hoodies - Green parda background */
+.Hoodies .parda {
+    background-color: rgba(34, 139, 34, 0.7); /* Semi-transparent green */
+}
+
+/* Product Details container */
+.product-details {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: left;
+    padding: 15px;
+    position: relative;
+    background: pink;
+    width: 100%; /* Full width to prevent overflow or gaps */
+}
+
+/* Hover effect for product details */
+.product-details:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px var(--hover-shadow);
+}
+
+/* Hover effect for parda */
+.product-details:hover .parda {
+    transform: translateY(0); /* Move the parda div down */
+    opacity: 1; /* Make it fully visible on hover */
+}
+
+/* Image styling */
+.product-img {
+    width: 100%;
+    height: auto;
+    border-bottom: 3px solid var(--primary-color);
+    transition: transform 0.3s ease;
+}
+
+.product-img:hover {
+    transform: scale(1.05); /* Zoom effect on hover */
+}
+
+/* Product info section */
+.product-info1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 15px 0;
+}
+
+/* New badge styling */
+.new {
+    padding: 5px 10px;
+    border-radius: 20px;
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: bold;
+    font-size: 0.9em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.new:hover {
+    background-color: #c0392b; /* Darker shade on hover */
+}
+
+/* Product title styling */
+.product-title-1 {
+    font-size: 2rem; /* Larger title */
+    margin: 0;
+    color: var(--text-color);
+}
+
+/* Product price styling */
+.product-price {
+    color: var(--primary-color);
+    font-size: 1.8em;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+/* Discount badge styling */
+.product-discount {
+    color: var(--secondary-color);
+    font-weight: normal;
+    font-size: 0.9em;
+    margin-top: 5px;
+    background-color: #eafaf1;
+    padding: 5px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+
+
+.ourstory{
+    padding: 50px;
+    background-color: black;
+}
+
+@media (max-width: 768px) {
+    .product {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+
+    .product-title {
+        font-size: 1.2em; /* Responsive title */
+    }
+}
+
+
+
+.overlay-products {
+    display: flex;
+    justify-content: center; /* Center the overlay items */
+    margin-top: 20px; /* Spacing above */
+}
+
+.overlay-item {
+    position: relative;
+    margin: 0 10px; /* Margin between items */
+    width: 200px; /* Fixed width for overlay items */
+    height: 300px; /* Fixed height for overlay items */
+    overflow: hidden;
+}
+
+.overlay-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Maintain aspect ratio */
+    transition: transform 0.3s; /* Smooth zoom effect */
+}
+
+.overlay-item:hover img {
+    transform: scale(1.1); /* Zoom effect on hover */
+}
+
+.overlay-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7); /* Dark background with transparency */
+    color: white;
+    padding: 10px;
+    text-align: center;
+    transition: background 0.3s; /* Smooth background transition */
+}
+
+.overlay-item:hover .overlay-info {
+    background: rgba(0, 0, 0, 0.9); /* Darker on hover */
+}
+
+
+
+.container3 {
+    max-width: 100%; /* Full width of the container */
+    margin: 0 auto; /* Center the container */
+    padding: 20px; /* Padding around the container */
+    overflow: hidden; /* Hide overflow for clean edges */
+    border-radius: 12px; /* Rounded corners */
+    background-color: var(--dark-color); /* Background color */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Box shadow for depth */
+}
+
+.scroll-container {
+    display: flex; /* Flexbox for horizontal layout */
+    overflow: hidden; /* Hide overflow to keep it clean */
+    white-space: nowrap; /* Prevent line breaks */
+    
+}
+
+.scroll-images {
+    display: inline-flex; /* Inline flex for continuous scrolling */
+    animation: scroll 15s linear infinite; /* Scroll animation */
+}
+
+.scroll-image {
+    width: 150px; /* Set a fixed width for each image */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 10px; /* Space between images */
+    border-radius: 8px; /* Rounded corners for images */
+}
+
+
+.related-products {
+    margin-top: 40px;
+}
+
+.related-products .card {
+    margin-bottom: 20px;
+}
+.suggested-products {
+    margin-top: 30px;
+}
+
+.card {
+    margin-bottom: 20px; /* already defined */
+}
+
+/* Optional: ensure card images are responsive */
+.card-img-top {
+    max-width: 100%;
+    height: auto;
+}
+
+
+.card-title{
+    color: #000000;
+}
+.card-text{
+    font-size: 1.5rem;
+    color: #000000;
+}
+
+/* Animation for scrolling */
+@keyframes scroll {
+    0% {
+        transform: translateX(0); /* Start position */
+    }
+    100% {
+        transform: translateX(-100%); /* End position (scrolling left) */
+    }
+}
+
+.rating {
+    border-radius: 20px;
+    border: 1px solid black;
+    padding: 10px;
+}
+
+/* Payment Info Section */
+.payment-info {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 30px 0;
+}
+
+.payment-card {
+    margin: 10px;
+}
+
+.payment-card img {
+    max-width: 120px; /* Consistent size for payment logos */
+    transition: transform 0.3s;
+}
+
+.payment-card img:hover {
+    transform: scale(1.1); /* Zoom effect on hover */
+}
+
+/* Login Form Styles */
+.custom-container {
+    width: 100%;
+    max-width: 400px; /* Adjust for a better mobile experience */
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px var(--shadow);
+    padding: 20px;
+    box-sizing: border-box; /* Ensure padding is included in total width/height */
+}
+
+.custom-row {
+    display: flex;
+    flex-direction: column;
+}
+
+.custom-heading {
+    text-align: center;
+    color: var(--light-color);
+    margin-bottom: 20px;
+}
+
+.custom-form {
+    display: flex;
+    flex-direction: column;
+}
+.custom-form input{
+    padding: 10px;
+    background-color: #282c30;
+    border: none;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+    width: 100%; /* Full width for responsiveness */
+    outline: none;
+    color: #ced4da;
+    border-bottom:  2px solid #666;
+}
+.custom-form input:focus {
+    /* border: none;
+    outline: none; */
+    background-color: #343a40;
+    color: #ced4da;
+}
+
+
+.custom-form-group {
+    margin-bottom: 15px;
+}
+
+.form-label {
+    font-weight: bold;
+    color: var(--light-color);
+}
+
+
+
+.custom-input:focus {
+    border-color: var(--primary-color);
+    /* outline: none; */
+ 
+}
+
+.error {
+    color: var(--error-color);
+    font-size: 0.9em;
+}
+
+.custom-button-1{
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%; /* Full width for responsiveness */
+    margin-top: 50px;
+   
+}
+
+.custom-button-1:hover {
+    background-color: var(--hover-color);
+}
+
+.custom-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    margin-top: 20px;
+}
+
+.custom-link:hover {
+    color: var(--hover-color);
+}
+
+.custom-text-center {
+    text-align: center;
+}
+
+/* Margin Utility Classes */
+.mt-4 {
+    margin-top: 1.5rem;
+}
+
+.mt-3 {
+    margin-top: 1rem;
+}
+
+.custom-offset {
+    padding: 20px;
+}
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+    .custom-container {
+        width: 90%; /* Ensure it takes up 90% of the screen width on small devices */
+        padding: 15px; /* Reduce padding for smaller screens */
+    }
+
+    .custom-input {
+        padding: 12px; /* Slightly more padding for easier touch on smaller devices */
+    }
+
+    .custom-button {
+        padding: 12px; /* Slightly larger button on smaller devices */
+    }
+}
+
+/* Curtain effect */
+.curtain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    z-index: 9999;
+    transform: scaleX(1);
+    transform-origin: center;
+    transition: transform 1.5s ease-in-out;
+    display: none; /* Initially hidden */
+    pointer-events: none; /* Prevent interactions with other content while the curtain is active */
+}
+
+.curtain.open {
+    display: block;
+    transform: scaleX(0);
+}
+
+.curtain .left,
+.curtain .right {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background: #fff;
+    transition: transform 1.5s ease-in-out;
+}
+
+.curtain .left {
+    left: 0;
+    transform-origin: left center;
+}
+
+.curtain .right {
+    right: 0;
+    transform-origin: right center;
+}
+
+/* Optional: Customize the animation */
+.curtain .left, .curtain .right {
+    animation: curtain-opening 1.5s ease-in-out forwards;
+}
+
+@keyframes curtain-opening {
+    0% {
+        transform: scaleX(1);
+    }
+    100% {
+        transform: scaleX(0);
+    }
+}
+
+.product-container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 10px;
+    background: #1f2429;
+    box-shadow: 0 2px 10px var(--shadow);
+}
+
+.product-detail {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 20px;
+}
+
+.image-container {
+    width: 100%;
+}
+
+.product-image {
+    width: 100%;
+    border-radius: 10px 10px 0 0;
+    transition: transform 0.3s;
+}
+
+.product-image:hover {
+    transform: scale(1.05);
+}
+
+.details {
+    padding: 20px;
+}
+
+.product-title {
+    font-size: 3rem;
+ 
+    margin-bottom: 10px;
+}
+
+.product-description {
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+.pricing {
+    margin-bottom: 20px;
+}
+
+.current-price {
+    font-size: 5rem;
+    color: #fa471a;
+    margin-right: 10px;
+}
+
+.original-price {
+    text-decoration: line-through;
+    color: #999;
+    font-size: 1.5rem;
+}
+
+.buttons {
+    margin-bottom: 20px;
+}
+.buttons button{
+    margin-bottom: 50px;
+}
+.addtocartbutton{
+    background-color: #666;
+    color: #ffffff;
+    padding: 20px;
+    font-size: 1.6rem;
+    text-decoration: none;
+  &:hover{
+    color: rgb(209, 156, 156);  
+  }
+}
+.buy-now{
+    background-color: #666;
+    color: #ffffff;
+    padding: 20px;
+    font-size: 2rem;
+    text-decoration: none;
+  &:hover{
+    color: rgb(209, 156, 156);  
+  }
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 20px;
+    background-color: var(--primary-color);
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn:hover {
+    background-color: var(--hover-color);
+    transform: translateY(-1px);
+}
+
+.offers-title {
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.offers-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.offers-list li {
+    background: #f0f0f0;
+    margin: 5px 0;
+    padding: 12px;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.offers-list li:hover {
+    background: #e0e0e0;
+}
+
+#myTable {
+    width: 100%; /* Full width of the table */
+    border-collapse: collapse; /* Remove gaps between cells */
+    margin-top: 10px; /* Space above the table */
+}
+
+#myTable th, #myTable td {
+    border: 1px solid #ddd; /* Border for table cells */
+    padding: 10px; /* Padding inside cells */
+    text-align: center; /* Center text */
+}
+
+#myTable th {
+    background-color: #f2f2f2; /* Light gray background for header */
+    color: #333; /* Darker text for visibility */
+}
+
+#myTable tr:nth-child(even) {
+    background-color: #f9f9f9; /* Alternate row color */
+}
+
+.hidden1 {
+    display: none; /* Hide the table initially */
+}
+
+.hidden1.active {
+    display: table; /* Show the table when active */
+}
+
+/* Additional styles for responsiveness */
+@media (max-width: 768px) {
+    #myTable {
+        font-size: 0.9em; /* Slightly smaller font on mobile */
+    }
+}
+
+
+
+.reviews-section {
+    padding: 20px;
+    background-color: #1f2429;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.reviews-container {
+    margin-bottom: 20px;
+}
+
+.reviewblock {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.revimage {
+    width: 60px;
+    height: 60px;
+    background-color: #007bff; /* You can change this to any color */
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 15px;
+}
+
+.review-content {
+    flex-grow: 1;
+    
+}
+
+.namep {
+    margin: 0;
+}
+
+.rtitle {
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.reviewp {
+    margin-top: 5px;
+   font-size: 2rem;
+}
+
+.form-label {
+    margin-bottom: 5px;
+}
+
+.mb-3 {
+    margin-bottom: 1rem;
+}
+
+.btn {
+    margin-top: 10px;
+}
+
+
+/* Responsive Styles */
+@media (min-width: 768px) {
+    .product-detail {
+        flex-direction: row;
+        padding-bottom: 40px;
+    }
+
+    .image-container {
+        flex: 1;
+    }
+
+    .details {
+        flex: 2;
+        padding: 30px;
+    }
+
+    .current-price {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 767px) {
+    .product-title {
+        font-size: 24px;
+    }
+
+    .btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .banner-slider{
+        margin-top: 120px;
+    }
+}
+
+@media (max-width: 480px) {
+    .product-title {
+        font-size: 20px;
+    }
+
+    .current-price {
+        font-size: 24px;
+    }
+    .banner-slider{
+        margin-top: 100px;
+    }
+    .addtocartbutton{
+        width: 100%;
+    }
+    .buttons{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .reviewp {
+        margin-top: 5px;
+       font-size: 1rem;
+    }
+    .removeitembtn{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 10px;
+    }
+    
+}
+.cart-body-1{
+    background-color: #1f2429;
+    border-left: 5px solid  #31ff15;
+  
+    
+}
+.payments-b{
+    background-color: #1f2429;
+    border-left: 5px solid  #31ff15;
+}
+.listgd{
+    background-color: #1f2429;
+}
+.list-group li{
+    background-color: #000000;
+    padding: 10px;
+    border-right: 3px solid #31ff15;
+    border-bottom: 2px solid black;
+}
+.list-item{
+    border-right: 3px solid #31ff15;
+    border-bottom: 4px solid black;
+}
+.removeitembtn{
+    display: flex;
+    justify-content: space-between;
+}
+.sidebar {
+    font-weight: 100;
+    opacity: 0.9;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    /* Initially hidden on mobile */
+    display: none; 
+    border-left: 5px solid pink;
+    padding: 10px;
+    border-top: 5px solid pink;
+    border-top-left-radius: 2%;
+}
+
+.sidebar-s{
+    font-weight: 100;
+    opacity: 0.9;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    /* Initially hidden on mobile */
+    display: none; 
+    border-left: 5px solid rgb(107, 230, 255);
+    padding: 10px;
+    border-top: 5px solid rgb(107, 230, 255);
+    border-top-left-radius: 2%;
+}
+.sidebar-h{
+    font-weight: 100;
+    opacity: 0.9;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    /* Initially hidden on mobile */
+    display: none; 
+    border-left: 5px solid rgb(13, 255, 13);
+    padding: 10px;
+    border-top: 5px solid rgb(13, 255, 13);
+    border-top-left-radius: 2%;
+}
+
+.sidebar-p{
+    font-weight: 100;
+    opacity: 0.9;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   
+    padding: 10px;
+   
+  
+}
+
+.sidebar a ,.sidebar-s a ,.sidebar-h a{
+    text-decoration: none;
+    color: var(--light-color) ;
+    margin-top: 23px;
+    padding: 13px;
+}
+
+.sidebar a:hover , .sidebar-s a:hover , .sidebar-h a:hover{
+    border: 1px solid var(--light-color) ;
+}
+
+.color {
+    font-size: 2rem;
+    margin-top: 10px;
+    border-bottom: 1px solid gray;
+}
+
+.Pink span, .Blue span, .Black span, .White span, .Brown span, .Orange span {
+    border: 1px solid black;
+    padding: 15px;
+    border-radius: 100%;
+    margin-right: 10px;
+    font-size: 0.5rem;
+}
+
+.Pink span { background-color: pink; }
+.Blue span { background-color: blueviolet; }
+.Black span { background-color: black; }
+.White span { background-color: white; }
+.Brown span { background-color: brown; }
+.Orange span { background-color: orange; }
+
+.price-fillter input {
+    border-radius: 20px;
+    margin-top: 10px;
+}
+
+.price-fillter button {
+    background-color: var(--primary-color);
+    color: white;
+    width: 100px;
+    margin-top: 10px;
+}
+
+/* Media query for showing the sidebar on larger screens */
+@media (min-width: 768px) {
+    .sidebar ,.sidebar-s ,.sidebar-h{
+        display: flex; /* Show sidebar on larger screens */
+    }
+}
+
+.productpage{
+    background-color: pink;
+    margin-bottom: 20px;
+    border-right: 5px solid var(--dark-color);
+}
+
+.productpages{
+    background-color: rgb(107, 230, 255);
+    margin-bottom: 20px;
+    border-right: 5px solid var(--dark-color);
+}
+.productpageh{
+    background-color: rgb(33, 205, 33);
+    margin-bottom: 20px;
+    border-right: 5px solid var(--dark-color);
+}
+
+.product-price1{
+    font-size: 2rem;
+}
+/* Class to control visibility for mobile toggle */
+.toggle-visible {
+    display: flex; /* Show sidebar when toggled */
+    flex-direction: column;
+}
+
+/* Style for the toggle button */
+#toggle-sidebar {
+    margin-bottom: 15px; /* Space between button and sidebar */
+    display: flex;
+}
+
+.SummerT{
+    background-color: #343a40;
+    
+}
+.Hoodies{
+    background-color: rgb(33, 205, 33);
+}
+.home-title{
+    font-weight: 100;
+    opacity: 1;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.ptitles{
+    font-weight: 200;
+    opacity: 1;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    margin-top: 20PX;
+
+
+}   
+.product-details-1{
+    font-weight: 200;
+    opacity: 1;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.address{
+    background-color: var(--dark-color);
+    font-size: 1.5rem;
+  
+}
+.checkout-ps{
+    background-color: #2c3034;
+    border-left: 5px solid  #31ff15;
+}
+/* Custom image container using unique class names */
+.custom-image-container {
+    display: flex;
+    flex-wrap: wrap; /* Allows images to wrap on smaller screens */
+    justify-content: space-between;
+    height: 100vh; /* Full viewport height */
+    margin-top: 50px;
+}
+
+/* Left image takes 48% of the width, but becomes full width on smaller screens */
+.custom-image-left, .custom-image-right {
+    width: 48%; /* Each section takes 48% of the width */
+    box-sizing: border-box;
+}
+
+.custom-image-right {
+    display: flex;
+    flex-direction: column; /* Right images are arranged in a column by default */
+    justify-content: space-between;
+    height: 100%; /* Full height */
+}
+
+.custom-image-right-top, .custom-image-right-bottom {
+    height: 48%; /* Each image on the right takes 48% of the height */
+    width: 100%;
+}
+
+.custom-image-link {
+    position: relative;
+    display: block;
+    height: 100%;
+}
+
+.custom-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures images cover the space without distortion */
+}
+
+.custom-shop-button {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    padding: 10px 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.custom-shop-button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Responsive design for smaller screens */
+
+/* For screens smaller than 768px (tablets, mobile portrait) */
+@media (max-width: 768px) {
+    .custom-image-container {
+        flex-direction: column; /* Stack images vertically on smaller screens */
+        height: auto; /* Adjust height to content instead of full viewport */
+    }
+
+    .custom-image-left, .custom-image-right {
+        width: 100%; /* Both images take full width */
+    }
+
+    .custom-image-right {
+        flex-direction: row; /* Place the right images side by side */
+    }
+
+    .custom-image-right-top, .custom-image-right-bottom {
+        width: 50%; /* Each right image takes 50% width */
+        height: 50%; /* Equal height for both images */
+    }
+}
+
+/* For screens between 768px and 1024px (tablets, landscape orientation) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .custom-image-container {
+        flex-direction: row; /* Keep horizontal layout, but stack on small screens */
+    }
+
+    .custom-image-left, .custom-image-right {
+        width: 50%; /* Split the space evenly between left and right */
+    }
+
+    .custom-image-right {
+        flex-direction: column; /* Right images in a column */
+    }
+
+    .custom-image-right-top, .custom-image-right-bottom {
+        height: 50%; /* Equal height for the two right images */
+    }
+}
+
+/* For screens larger than 1024px (desktops and large screens) */
+@media (min-width: 1025px) {
+    .custom-image-container {
+        flex-direction: row; /* Layout remains horizontal */
+    }
+
+    .custom-image-left, .custom-image-right {
+        width: 48%; /* Maintain original layout (left: 48%, right: 48%) */
+    }
+
+    .custom-image-right {
+        flex-direction: column; /* Right images are arranged vertically */
+    }
+
+    .custom-image-right-top, .custom-image-right-bottom {
+        height: 48%; /* Each right-side image occupies 48% height */
+    }
+}
+
+/* For screens larger than 1440px (very large desktops) */
+@media (min-width: 1440px) {
+    .custom-image-container {
+        justify-content: center; /* Center the images within the container */
+    }
+
+    .custom-image-left, .custom-image-right {
+        width: 48%; /* Maintain 48% width for each */
+    }
+
+    .custom-image-right {
+        flex-direction: column; /* Keep images in column format */
+    }
+
+    .custom-image-right-top, .custom-image-right-bottom {
+        height: 48%; /* Maintain equal height for right-side images */
+    }
+}

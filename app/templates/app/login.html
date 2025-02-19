@@ -1,0 +1,39 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Login{% endblock title %}
+
+{% block main-content %}
+<div class="container block-main">
+    <div class="custom-row">
+        <div class="custom-offset">
+            <h3 class="custom-heading">Login</h3>
+            <hr>
+            <form action="" method="post" novalidate class="custom-form">
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+                <div class="custom-form-group">
+                    <label for="{{ form.username.id_for_label }}" class="form-label">Username</label>
+                    <input type="text" class="custom-input" id="{{ form.username.id_for_label }}" name="{{ form.username.name }}" placeholder="Enter your username" value="{{ form.username.value|default:'' }}">
+                    {{ form.username.errors }}
+                </div>
+                <div class="custom-form-group">
+                    <label for="{{ form.password.id_for_label }}" class="form-label">Password</label>
+                    <input type="password" class="custom-input" id="{{ form.password.id_for_label }}" name="{{ form.password.name }}" placeholder="Enter your password">
+                    {{ form.password.errors }}
+                </div>
+                <small><a href="{% url 'password_reset' %}" class="custom-link">Forgot Password?</a></small>
+
+                <br>
+                <button type="submit" class="custom-button-1 mt-4 text-light" value="Login">Login</button>
+                <br>
+                <div class="custom-text-center mt-3">
+                    <small>New to ShoppinglyX? 
+                        <a href="{% url 'customerregistration' %}" class="custom-link text-danger">Create an Account</a>
+                    </small>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="https://unpkg.com/scrollreveal"></script>
+{% endblock main-content %}

@@ -1,0 +1,449 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+
+{% block banner_slider %}
+<!-- Banner Slider -->
+
+<!-- Banner Slider -->
+{% comment %} <div class="banner-slider">
+    <div class="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{% static 'images/scrollimg3.png' %}" alt="Banner 1"> 
+            </div>
+        </div>
+    </div>
+</div> {% endcomment %}
+<!-- End Banner Slider -->
+
+<!-- New Curtain Image Block with Celebration GIF and Text -->
+{% comment %} <div class="curtain-image-section">
+    <div class="curtain-image-container">
+      
+        <div class="celebrating-gif">
+            <img src="{% static 'images/celeb.gif' %}" alt="Celebrating GIF" class="gif-background">
+        </div>
+
+        <div class="curtain-image-text">
+           
+            <h1 class="opening-text">Burhani Grand Opening! Try it Out!</h1>
+        </div>
+    </div>
+</div> {% endcomment %}
+<!-- End Curtain Image Block -->
+
+<!-- Video Banner Section -->
+<div class="video-banner-block block-main">
+    <div class="video-container">
+        <video class="video-background" autoplay loop muted>
+            <source src="{% static 'images/intro-v.mp4' %}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+</div>
+<!-- End Video Banner Section -->
+
+
+
+<!-- Django Template for image layout with unique class names -->
+<div class="custom-image-container">
+    <div class="custom-image-left">
+        <a href="{% url 'oversized_tshirt' %}" class="custom-image-link">
+            <img src="{% static 'images/leftimg.jpg' %}" alt="Left Image" class="custom-image">
+            <button class="custom-shop-button">Shop Now</button>
+        </a>
+    </div>
+    <div class="custom-image-right">
+        <div class="custom-image-right-top">
+            <a href="{% url 'summer_tshirt' %}" class="custom-image-link">
+                <img src="{% static 'images/aad2.jpg' %}" alt="Right Top Image" class="custom-image">
+                <button class="custom-shop-button">Shop Now</button>
+            </a>
+        </div>
+        <div class="custom-image-right-bottom">
+            <a href="{% url 'hoodies' %}" class="custom-image-link">
+                <img src="{% static 'images/aadr.jpg' %}" alt="Right Bottom Image" class="custom-image">
+                <button class="custom-shop-button">Shop Now</button>
+            </a>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<!-- Our Story Section -->
+{% comment %} <div class="container-fluid  shadow-sm mt-5 mb-4 rounded rounded-3  text-light ourstory" >
+    <h1 class="display-6 text-center">
+        Our Story
+    </h1>
+    <p class="text-center">Burhani is all about modern, on-the-move must-haves. We aim to merge high fashion
+        minimalism with the uniqueness and comfort of athleisure. Our collections are crafted with the best of fabric and premium
+        cotton, and our silhouettes are high on the trend quotient. Elevate your everyday look with our stylish
+        and functional essentials, travel wear. You will always be adventure-ready with Burhani.</p>
+</div>   {% endcomment %}
+<!-- End Our Story Section -->
+
+
+<!-- Video Advertisement Section -->
+<div class="advertisement-video-section ">
+    <div class="advertisement-container">
+        <!-- Video Advertisement -->
+        <video id="advertisement-video" class="advertisement-video" autoplay muted>
+            <source src="{% static 'images/ronaldo-voice.mp4' %}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    
+    <!-- Mute/Unmute and Play/Pause Buttons Outside the Video Container -->
+    <div class="controls-container">
+        <!-- Mute/Unmute Button -->
+        <button id="advertisement-mute-btn" onclick="toggleAdMute()">Unmute</button>
+        
+        <!-- Play/Pause Button -->
+        <button id="play-pause-btn" onclick="togglePlayPause()">Pause</button>
+    </div>
+</div>
+<!-- End Advertisement Video Section -->
+
+
+
+
+
+
+
+
+<!-- Image Gallery Section -->
+{% comment %} <div class="container-fluid mt-4">
+    <h2 class="text-center mb-4">Our Collection</h2>
+    <div class="row smallscreen">
+        <div class="col-md-3 col-sm-6 mb-3">
+            <div class="gallery-item">
+                <img src="{% static 'app/images/b1 - Copy.jpg' %}" class="img-fluid" alt="Image 1">
+            </div>
+            <div class="gallery-item">
+                <img src="{% static 'app/images/b2.jpg' %}" class="img-fluid" alt="Image 2">
+            </div>
+            <div class="gallery-item">
+                <img src="{% static 'app/images/b3.png' %}" class="img-fluid" alt="Image 3">
+            </div>
+            <div class="gallery-item">
+                <img src="{% static 'app/images/b4.jpg' %}" class="img-fluid" alt="Image 4">
+            </div>
+            <div class="gallery-item">
+                <img src="{% static 'app/images/b5.jpg' %}" class="img-fluid" alt="Image 5">
+            </div>
+            <div class="gallery-item">
+                <img src="{% static 'app/images/b6.avif' %}" class="img-fluid" alt="Image 6">
+            </div>
+            <a href="smtin10.html" class="gallery-item">
+                <img src="{% static 'app/images/smt10color1.webp' %}" class="img-fluid" alt="Image 10">
+            </a>
+        </div>
+        <div class="col-md-3 col-sm-6 mb-3">
+            <div class="gallery-item">
+                <img src="{% static 'app/images/overs1.webp' %}" class="img-fluid" alt="Oversized 1">
+            </div>
+            <div class="gallery-item">
+                <img src="{% static 'app/images/overs10.webp' %}" class="img-fluid" alt="Oversized 10">
+            </div>
+            <div class="gallery-item">
+                <img src="{% static 'app/images/overs11.webp' %}" class="img-fluid" alt="Oversized 11">
+            </div>
+            <div class="gallery-item">
+                <img src="{% static 'app/images/overs12.webp' %}" class="img-fluid" alt="Oversized 12">
+            </div>
+            <div class="gallery-item">
+                <img src="{% static 'app/images/overs2.webp' %}" class="img-fluid" alt="Oversized 2">
+            </div>
+            <div class="gallery-item">
+                <img src="{% static 'app/images/overs3.webp' %}" class="img-fluid" alt="Oversized 3">
+            </div>
+        </div>
+        
+        <div class="col-md-3 col-sm-6 mb-3">
+            <div class="gallery-item">
+                <img src="{% static 'app/images/smt15color2.webp' %}" class="img-fluid" alt="Image 15">
+            </div>
+            <div class="gallery-item">
+                <img src="{% static 'app/images/hm5.webp' %}" class="img-fluid" alt="Hoodie 5">
+            </div>
+            <div class="gallery-item">
+                <img src="{% static 'app/images/smt11color2.webp' %}" class="img-fluid" alt="Image 11">
+            </div>
+            <div class="gallery-item">
+                <img src="{% static 'app/images/hm9.webp' %}" class="img-fluid" alt="Hoodie 9">
+            </div>
+            <div class="gallery-item">
+                <img src="{% static 'app/images/overs15.webp' %}" class="img-fluid" alt="Oversized 15">
+            </div>
+            <div class="gallery-item">
+                <img src="{% static 'app/images/smd1.jpg' %}" class="img-fluid" alt="Image 1">
+            </div>
+            <div class="gallery-item">
+                <img src="{% static 'app/images/smt10color6.webp' %}" class="img-fluid" alt="Image 10">
+            </div>
+        </div>
+        
+        <div class="col-md-3 col-sm-6 mb-3">
+            <div class="gallery-item">
+                <img src="{% static 'app/images/ovt3colro1.webp' %}" class="img-fluid" alt="Oversized Color 1">
+            </div>
+            <div class="gallery-item">
+                <img src="{% static 'app/images/ovtcolor3.webp' %}" class="img-fluid" alt="Oversized Color 3">
+            </div>
+            <div class="gallery-item">
+                <img src="{% static 'app/images/ovt3color3.webp' %}" class="img-fluid" alt="Oversized 3 Color 3">
+            </div>
+            <div class="gallery-item">
+                <img src="{% static 'app/images/ovt4color2.webp' %}" class="img-fluid" alt="Oversized Color 2">
+            </div>
+            <div class="gallery-item">
+                <img src="{% static 'app/images/ovt8color4.webp' %}" class="img-fluid" alt="Oversized Color 4">
+            </div>
+            <div class="gallery-item">
+                <img src="{% static 'app/images/smt4color4.webp' %}" class="img-fluid" alt="Image 4 Color 4">
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div> {% endcomment %}
+<!-- End Image Gallery Section -->
+
+<!-- Add some styles -->
+<style>
+    /* Image Gallery Section */
+    .container-fluid {
+        padding: 20px; /* Add padding for spacing */
+    }
+    
+    .row {
+        display: flex;
+        flex-wrap: wrap; /* Ensure items wrap on smaller screens */
+        justify-content: center; /* Center items */
+    }
+    
+    .gallery-item {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        transition: transform 0.3s, box-shadow 0.3s;
+        margin: 10px; /* Margin between items */
+        flex: 0 1 calc(25% - 20px); /* Responsive width */
+    }
+    
+    .gallery-item img {
+        width: 100%;
+        height: auto; /* Maintain aspect ratio */
+        transition: transform 0.3s;
+    }
+    
+    .gallery-item:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* Responsive Design for Smaller Screens */
+    @media (max-width: 768px) {
+        .gallery-item {
+            flex: 0 1 calc(50% - 20px); /* Two items per row on medium screens */
+        }
+    }
+    
+    @media (max-width: 576px) {
+        .gallery-item {
+            flex: 0 1 calc(100% - 20px); /* One item per row on small screens */
+        }
+    }
+    
+</style>
+
+
+{% endblock banner_slider %}
+
+{% block main-content %}
+<!-- 1st Product Section -->
+<div class="text-center home-title mt-5">
+    <h2 class="display-2">Our Bestsellers</h2>
+    <p class="display-6">Don't miss out Top Selling styles</p>
+    
+        
+</div>
+
+{% comment %} <div>
+    <h2>Trending Deals Topwears</h2>
+    <div class="product">
+        {% for b in topwears %}
+        <a href="{% url 'product-detail' b.id %}" class="product-details shadow shadow-lg text-decoration-none">
+            <img src="{{ b.product_image.url }}" alt="{{ b.title }}" class="product-img">
+            <div class="product-info1">
+                <span class="new">New</span>
+                <h5 class="product-title text-dark">{{ b.title }}</h5>
+                <del><p class="product-price text-dark">Rs. {{ b.selling_price }}</p></del>
+                <p class="product-price text-danger">Rs. {{ b.discounted_price }}</p>
+                <strong class="product-discount" style="color: green;">50% off Lowest price in last 30 days</strong>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div> {% endcomment %}
+
+<!-- Oversized T-Shirts Section -->
+<div>
+    <h2 class="ptitles">Oversized T-Shirts</h2>
+    <div class="product  OversizedT">
+        
+        {% for ot in oversized_tshirts|slice:":12" %}
+        <a href="{% url 'product-detail' ot.id %}" class="product-details shadow shadow-lg text-decoration-none">
+            <div class="parda">Show me</div> <!-- Default text inside parda -->
+            <img src="{{ ot.product_image.url }}" alt="{{ ot.title }}" class="product-img">
+            <div class="product-info1 text-center">
+                <span class="new">New</span>
+                <h5 class="product-title-1 text-dark bg-warning">{{ ot.title }}</h5>
+                <del><p class="product-price text-light">Rs. {{ ot.selling_price }}</p></del>
+                <p class="product-price text-light ppp bg-danger">Rs. {{ ot.discounted_price }}</p>
+                <strong class="product-discount" style="color: green;">50% off Lowest price in last 30 days</strong>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+    <div class="text-center mt-3">
+        <a href="{% url 'oversized_tshirt' %}" class="btn btn-primary">Show More</a>
+    </div>
+</div>
+
+
+<!-- Banner Slider -->
+<div class="banner-slider">
+    <div class="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{% static 'images/overszieddisplay1.webp' %}" alt="Banner 1">
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Banner Slider -->
+
+<!-- Summer T-Shirts Section -->
+<div>
+    <h1 class="ptitles m-5">Trending Deals Summer T-Shirts</h1>
+    <div class="product SummerT">
+        {% for st in summer_tshirts|slice:":12" %} <!-- Display the first 12 summer t-shirts -->
+        <a href="{% url 'product-detail' st.id %}" class="product-details shadow shadow-lg text-decoration-none bg-light">
+            <div class="parda">Show me</div> <!-- Default text inside parda -->
+            <img src="{{ st.product_image.url }}" alt="{{ st.title }}" class="product-img">
+            <div class="product-info1 text-center">
+                <span class="new">New</span>
+                <h5 class="product-title-1 text-dark bg-warning">{{ st.title }}</h5>
+                <del><p class="product-price text-dark">Rs. {{ st.selling_price }}</p></del>
+                <p class="product-price text-light bg-danger">Rs. {{ st.discounted_price }}</p>
+                <strong class="product-discount" style="color: green;">50% off Lowest price in last 30 days</strong>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+    <div class="text-center mt-3">
+        <a href="{% url 'summer_tshirt' %}" class="btn btn-primary">Show More</a> <!-- Adjust URL name -->
+    </div>
+</div>
+
+
+
+<!-- End 1st Product Section -->
+<div class="container-fluid-md p-5 shadow-sm hoodieimg">
+    <img src="{% static 'images/hoodie.jpeg' %}" class="w-100 img-fluid ">
+</div>
+
+<!-- Hoodies Section -->
+<div>
+    <h2 class="ptitles m-5">Trending Deals Hoodies</h2>
+    <div class="product">
+        {% for h in hoodies|slice:":12" %} <!-- Display the first 12 hoodies -->
+        <a href="{% url 'product-detail' h.id %}" class="product-details shadow shadow-lg text-decoration-none Hoodies">
+            <div class="parda">Show me</div> <!-- Default text inside parda -->
+            <img src="{{ h.product_image.url }}" alt="{{ h.title }}" class="product-img">
+            <div class="product-info1 text-center">
+                <span class="new">New</span>
+                <h5 class="product-title-1 text-dark bg-warning">{{ h.title }}</h5>
+                <del><p class="product-price text-light">Rs. {{ h.selling_price }}</p></del>
+                <p class="product-price text-light ppp">Rs. {{ h.discounted_price }}</p>
+                <strong class="product-discount" style="color: green;">50% off Lowest price in last 30 days</strong>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+    <div class="text-center mt-3">
+        <a href="{% url 'hoodies' %}" class="btn btn-primary">Show More</a> <!-- Adjust URL name -->
+    </div>
+</div>
+
+<!-- 2nd Product Section -->
+{% comment %} <div>
+    <h2>Trending Deals Nutritions</h2>
+    <div class="product nutrition">
+        {% for tp in mobiles %}
+        <a href="{% url 'product-detail' tp.id %}" class="product-details shadow shadow-lg text-decoration-none">
+            <img src="{{ tp.product_image.url }}" alt="{{ tp.title }}" class="product-img">
+            <div class="product-info1">
+                <span class="new">New</span>
+                <h5 class="product-title text-dark">{{ tp.title }}</h5>
+                <del><p class="product-price text-dark">Rs. {{ tp.selling_price }}</p></del>
+                <p class="product-price">Rs. {{ tp.discounted_price }}</p>
+            </div>
+            <strong class="product-discount">50% off Lowest price in last 30 days</strong>
+        </a>
+        {% endfor %}
+    </div>
+</div> {% endcomment %}
+
+<div class="container3 shadow-lg mt-5 scroll12">
+    <div class="scroll-container">
+        <div class="scroll-images">
+            <img src="{% static 'images/sw11.webp' %}" class="scroll-image">
+            <img src="{% static 'images/sw22.webp' %}" class="scroll-image">
+            <img src="{% static 'images/sw33.webp' %}" class="scroll-image">
+            <img src="{% static 'images/sw44.webp' %}" class="scroll-image">
+            <img src="{% static 'images/sww1.webp' %}" class="scroll-image">
+            <img src="{% static 'images/sww2.webp' %}" class="scroll-image">
+            <img src="{% static 'images/sww3.webp' %}" class="scroll-image">
+            <img src="{% static 'images/sww4.webp' %}" class="scroll-image">
+            <img src="{% static 'images/sww5.webp' %}" class="scroll-image">
+            <img src="{% static 'images/sww6.webp' %}" class="scroll-image">
+            <img src="{% static 'images/sww7.webp' %}" class="scroll-image">
+            <img src="{% static 'images/sww8.webp' %}" class="scroll-image">
+        </div>
+    </div>
+</div>
+
+<!-- 3rd Product Section -->
+{% comment %} <div>
+    <h2>Sports Wears</h2>
+    <div class="product">
+        {% for bw in bottomwears %}
+        <a href="{% url 'product-detail' bw.id %}" class="product-details shadow shadow-lg text-decoration-none">
+            <img src="{{ bw.product_image.url }}" alt="{{ bw.title }}" class="product-img">
+            <div class="product-info1">
+                <span class="new">New</span>
+                <h5 class="product-title text-dark">{{ bw.title }}</h5>
+                <del><p class="product-price text-dark">Rs. {{ bw.selling_price }}</p></del>
+                <p class="product-price text-danger">Rs. {{ bw.discounted_price }}</p>
+                <strong class="product-discount" style="color: green;">50% off Lowest price in last 30 days</strong>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div> {% endcomment %}
+
+<!-- End 3rd Product Section -->
+
+<script src="https://unpkg.com/scrollreveal"></script>
+{% endblock main-content %}

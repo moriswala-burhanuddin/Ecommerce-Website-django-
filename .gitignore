@@ -1,0 +1,4 @@
+shoppinglyx/media/
+shoppinglyx/app/__pycache__/
+shoppinglyx/app/migrations/
+shoppinglyx/db.sqlite3

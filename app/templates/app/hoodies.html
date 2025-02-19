@@ -1,0 +1,81 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block title %} 
+Hoodies
+{% endblock title %}
+
+{% block main-content %}
+<div class="container block-main">
+  <div class="row">
+    <div class="col-md-3 fillscr">
+      <button id="toggle-sidebar" class="btn btn-secondary d-md-none">Toggle Filters</button>
+      <div class="sidebar-h" id="filter-sidebar">
+        <a href="{% url 'hoodies' %}" class="display-6 text-light">All Hoodies</a>
+        <br><br>
+        <p class="text-light color">Color</p>
+        <a href="{% url 'hoodies' %}?color=Pink" class="text-light Pink"><span></span>Pink</a><br>
+        <a href="{% url 'hoodies' %}?color=Blue" class="text-light Blue"><span></span>Blue</a><br>
+        <a href="{% url 'hoodies' %}?color=Black" class="text-light Black"><span></span>Black</a><br>
+        <a href="{% url 'hoodies' %}?color=White" class="text-light White"><span></span>White</a><br>
+        <a href="{% url 'hoodies' %}?color=Brown" class="text-light Brown"><span></span>Brown</a><br>
+        <a href="{% url 'hoodies' %}?color=Orange" class="text-light Orange"><span></span>Orange</a><br>
+
+        <div class="price-filter">
+          <p class="text-light color">Price</p>
+          <label for="min_price">Min Price:</label>
+          <input type="number" name="min_price" id="min_price" placeholder="Min Price">
+          
+          <label for="max_price">Max Price:</label>
+          <input type="number" name="max_price" id="max_price" placeholder="Max Price">
+
+          <button type="submit" class="btn btn-primary">Filter</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-9">
+      <div class="row">
+        {% for product in hoodies %}
+        <div class="col-sm-6 col-md-4 text-center mb-4 productpageh">
+          <a href="{% url 'product-detail' product.id %}" class="product-details-1 text-decoration-none">
+            <div class="item shadow shadow-lg text-decoration-none">
+              <img src="{{ product.product_image.url }}" alt="{{ product.title }}" class="product-image" />
+              <div class="product-info2">
+                <h5 class="product-title-1 text-dark bg-warning p-2">{{ product.title }}</h5>
+                <del><p class="product-price1 text-light">Rs. {{ product.selling_price }}</p></del>
+                <p class="product-price1 bg-danger text-light p-2">Rs. {{ product.discounted_price }}</p>
+              </div>
+            </div>
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+      
+      <!-- Advertisement Block -->
+      <div class="small-advertisement mt-4 bg-danger">
+        <span class="text-light">Visit My Pistagram Website</span>
+        <button id="close-ad" class="close-button">&times;</button>
+        <a href="https://pistagram-app.netlify.app/#" target="_blank">
+          <img src="{% static 'images/pistagram.png' %}" alt="Advertisement" class="ad-image" />
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<script src="https://unpkg.com/scrollreveal"></script>
+<script>
+  // Close advertisement functionality
+  document.getElementById('close-ad').addEventListener('click', function() {
+    document.querySelector('.small-advertisement').style.display = 'none';
+  });
+
+  // Toggle sidebar functionality
+  document.getElementById('toggle-sidebar').addEventListener('click', function() {
+    const sidebar = document.getElementById('filter-sidebar');
+    sidebar.classList.toggle('toggle-visible');
+  });
+</script>
+{% endblock main-content %}

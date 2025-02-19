@@ -1,0 +1,145 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block title %}My Orders{% endblock title %}
+{% block main-content %}
+<div class="container block-main">
+    <h1 class="text-center mb-5 text-light">My Orders</h1>
+
+    <!-- Notification for cancellation and instructions -->
+    <div class="alert alert-info">
+        Please note: If you cancel your order, your money will be returned within 2 hours. Ensure you cancel the order before it is delivered.
+    </div>
+
+    <!-- Display messages -->
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    
+    {% if orders %}
+        <div class="row">
+            {% for order in orders %}
+                <div class="col-md-4 mb-4">
+                    <div class="order-card">
+                        {% if order.product.product_image %}
+                            <img src="{{ order.product.product_image.url }}" alt="{{ order.product.title }}" class="order-card-img">
+                        {% else %}
+                            <p class="no-image">No image available</p>
+                        {% endif %}
+                        <div class="order-card-body">
+                            <h5 class="order-card-title">{{ order.product.title }}</h5>
+                            <p class="order-card-text">Order ID: {{ order.id }}</p>
+                            <p class="order-card-text">Quantity: {{ order.quantity }}</p>
+                            <p class="order-card-text">Price: Rs. {{ order.product.discounted_price }}</p>
+                            <p class="order-card-text bg-danger text-light p-2">Status: {{ order.status }}</p>
+                            <p class="order-card-text">Date: {{ order.created_at|date:"d M Y" }}</p>
+                            <p class="order-card-text">Transaction ID: 
+                                {% if order.transaction_set.exists %}
+                                    {{ order.transaction_set.first.transaction_id }}
+                                {% else %}
+                                    Not available
+                                {% endif %}
+                            </p>
+                        </div>
+                        {% if order.status != 'Delivered' and not order.cancelled %}
+                            <div class="order-card-footer">
+                                <a href="{% url 'cancel_order' order.id %}" 
+                                   class="btn btn-danger" 
+                                   onclick="return confirm('Are you sure you want to cancel this order?');">
+                                   Cancel Order
+                                </a>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-warning text-center">
+            <strong>No orders found!</strong>
+        </div>
+    {% endif %}
+</div>
+
+<style>
+    .container {
+        max-width: 1200px;
+        {% comment %} margin: auto; {% endcomment %}
+    }
+    
+    h1 {
+        font-size: 2.5rem;
+    
+    }
+    
+    .order-card {
+        border: 4px solid #dc3545;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s;
+    }
+    
+    .order-card:hover {
+        transform: scale(1.05);
+    }
+    
+    .order-card-img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+    
+    .order-card-body {
+        padding: 15px;
+        background-color: #fff;
+    }
+    
+    .order-card-title {
+        font-size: 1.25rem;
+        font-weight: bold;
+        color: #333;
+    }
+    
+    .order-card-text {
+        margin: 5px 0;
+        color: #666;
+    }
+    
+    .no-image {
+        text-align: center;
+        padding: 20px;
+        color: #999;
+    }
+    
+    .alert {
+        margin-top: 20px;
+        font-size: 1.1rem;
+    }
+    
+    .order-card-footer {
+        padding: 10px;
+        text-align: center;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    .btn-danger:hover {
+        background-color: #c82333;
+        text-decoration: none;
+    }
+</style>
+<script src="https://unpkg.com/scrollreveal"></script>
+{% endblock main-content %}

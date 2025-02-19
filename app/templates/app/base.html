@@ -1,0 +1,290 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <script src="https://unpkg.com/boxicons@2.1.3/dist/boxicons.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        #navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #282d32; /* Light color for the navbar */
+            transition: top 0.3s; /* Smooth transition */
+            z-index: 1000; /* Keep it on top */
+        }
+        #searchResults {
+            position: absolute;
+            top: 56px; /* Adjust based on navbar height */
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #343a40;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            width: 80%; /* Adjust width as needed */
+            max-height: 300px; /* Set a max height */
+            overflow-y: auto; /* Scroll if items overflow */
+            display: none; /* Hide by default */
+            z-index: 1000; /* Ensure it appears above other elements */
+        }
+        .result-item {
+            padding: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .result-item:hover {
+            background-color: #e9ecef; /* Hover effect */
+        }
+    </style>
+    <title>Burhani | {% block title %} {% endblock title %} </title>
+</head>
+<body>
+    <div class="container topbar bg-light d-none d-lg-block">
+        <div class="d-flex justify-content-between">
+            <div class="top-info ps-2">
+                <small class="me-3"> <a href="#" class="text-white">123 Street, New York</a></small>
+                <small class="me-3"><a href="#" class="text-white">Email@Example.com</a></small>
+            </div>
+            <div class="top-link pe-2">
+                <a href="#" class="text-white"><small class="text-white mx-2">Privacy Policy</small>/</a>
+                <a href="#" class="text-white"><small class="text-white mx-2">Terms of Use</small>/</a>
+                <a href="#" class="text-white"><small class="text-white ms-2">Sales and Refunds</small></a>
+            </div>
+        </div>
+    </div>
+    <nav class="navbar navbar-expand-lg" id="navbar">
+        <div class="container">
+            <a class="text-decoration-none text-dark logo" href="{% url 'home' %}">
+                <span class="Urhani"><strong class="display-1 B"><span class="smile">:)</span>B</strong>Urhani</span>
+            </a>
+    
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon">
+                    <i class='bx bx-menu text-light'></i>
+                </span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    </li>
+                    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="electronicsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            T-Shirts
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="electronicsDropdown">
+                            <li><a class="dropdown-item" href="{% url 'oversized_tshirt' %}">Oversized T-Shirts</a></li>
+                            <li><a class="dropdown-item" href="{% url 'summer_tshirt' %}">Summer T-Shirts</a></li>
+                            <li><a class="dropdown-item" href="{% url 'hoodies' %}">Hoodies</a></li>
+                        </ul>
+                    </li>
+    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="fashionDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Fashion
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="fashionDropdown">
+                            <li><a class="dropdown-item" href="#">Top Wear</a></li>
+                            <li><a class="dropdown-item" href="#">Bottom Wear</a></li>
+                        </ul>
+                    </li>
+    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="policiesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Policies
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="policiesDropdown">
+                            <li><a class="dropdown-item" href="{% url 'privacy-policy' %}">Privacy Policy</a></li>
+                            <li><a class="dropdown-item" href="{% url 'why_choose_us' %}">Why Choose Us</a></li>
+                            <li><a class="dropdown-item" href="{% url 'payment_instructions' %}">Payment Instructions</a></li>
+                            <li><a class="dropdown-item" href="{% url 'order_cancellation_policy' %}">Order Cancellation</a></li>
+                        </ul>
+                    </li>
+                </ul>
+    
+                <div class="position-relative">
+                    <form class="d-flex" id="searchForm">
+                        <input class="form-control me-2" type="search" id="searchInput" placeholder="Search" aria-label="Search" required>
+                        <button class="btn bg-light text-dark rounded " type="submit">Search</button>
+                    </form>
+                    <div id="searchResults" class="position-absolute  border border-secondary" style="display: none; z-index: 1000; max-height: 200px; overflow-y: auto;">
+                        <ul id="itemList" class="list-unstyled mb-0">
+                            <li><a class="dropdown-item" href="{% url 'oversized_tshirt' %}">Oversized T-Shirts</a></li>
+                            <li><a class="dropdown-item" href="{% url 'summer_tshirt' %}">Summer T-Shirts</a></li>
+                            <li><a class="dropdown-item" href="{% url 'hoodies' %}">Hoodies</a></li>
+                            <li><a class="dropdown-item" href="{% url 'privacy-policy' %}">Privacy Policy</a></li>
+                            <li><a class="dropdown-item" href="{% url 'why_choose_us' %}">Why Choose Us</a></li>
+                            <li><a class="dropdown-item" href="{% url 'payment_instructions' %}">Payment Instructions</a></li>
+                            <li><a class="dropdown-item" href="{% url 'order_cancellation_policy' %}">Order Cancellation</a></li>
+                            
+
+                            
+                            <!-- Add more items as needed -->
+                        </ul>
+                    </div>
+                </div>
+    
+                <div>
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        {% if request.user.is_authenticated %}
+                            <li class="nav-item dropdown mx-2">
+                                <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span class="text-capitalize">{{ request.user }}</span>
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="profileDropdown">
+                                    <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'orders' %}">Orders</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'passwordchange' %}">Change Password</a></li>
+                                    <li>
+                                        <form action="{% url 'logout' %}" method="post" style="display: inline;">
+                                            {% csrf_token %}
+                                            <button type="submit" class="dropdown-item">Logout</button>
+                                        </form>
+                                    </li>
+                                    <li>  <a href="{% url 'address' %}" class="dropdown-item">Address</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item mx-2">
+                                <a href="{% url 'showcart' %}" class="nav-link"><span class="badge bg-danger"><i><img src="{% static 'images/add-to-cart.png' %}" clas="dipimg" ></i></span> Cart</a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item mx-2">
+                                <a href="{% url 'login' %}" class="nav-link">Login</a>
+                            </li>
+                            <li class="nav-item mx-2">
+                                <a href="{% url 'customerregistration' %}" class="nav-link">Registration</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    
+        <script>
+            document.getElementById('searchForm').addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent form submission
+    
+                const searchInput = document.getElementById('searchInput').value.toLowerCase();
+                const items = document.querySelectorAll('#itemList .item');
+                let hasVisibleItems = false; // Track if any item matches the search
+    
+                items.forEach(item => {
+                    const text = item.textContent.toLowerCase();
+                    if (text.includes(searchInput)) {
+                        item.style.display = 'block'; // Show matching item
+                        hasVisibleItems = true; // At least one item is visible
+                    } else {
+                        item.style.display = 'none'; // Hide non-matching item
+                    }
+                });
+    
+                // Show or hide the item list based on search input
+                document.getElementById('searchResults').style.display = hasVisibleItems || searchInput.length > 0 ? 'block' : 'none';
+            });
+    
+            // Show the item list when the user types in the search bar
+            document.getElementById('searchInput').addEventListener('input', function() {
+                const searchInput = this.value.toLowerCase();
+                const items = document.querySelectorAll('#itemList .item');
+    
+                if (searchInput.length > 0) {
+                    document.getElementById('searchResults').style.display = 'block'; // Show results
+                } else {
+                    document.getElementById('searchResults').style.display = 'none'; // Hide if input is empty
+                }
+            });
+    
+            // Close the search results when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!document.getElementById('searchForm').contains(event.target)) {
+                    document.getElementById('searchResults').style.display = 'none';
+                }
+            });
+        </script>
+    </nav>
+    
+
+    {% block banner_slider %} {% endblock banner_slider %}
+    {% block livesale %} {% endblock livesale %}
+    {% block main-content  %} {% endblock main-content %}
+
+    <footer class="container-fluid footer ">
+        <div class="footer-links">
+            <a class="footer-link" href="{% url 'home'%}">Home</a>
+            <div class="dropdown">
+                <a class="footer-link dropdown-toggle" href="#" id="tshirtsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    T-Shirts
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{% url 'oversized_tshirt' %}">Oversized T-Shirts</a></li>
+                    <li><a class="dropdown-item" href="{% url 'summer_tshirt' %}">Summer T-Shirts</a></li>
+                    <li><a class="dropdown-item" href="{% url 'hoodies' %}">Hoodies</a></li>
+                </ul>
+            </div>
+            <div class="dropdown">
+                <a class="footer-link dropdown-toggle" href="#" id="fashionDropdownFooter" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Fashion
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Top Wear</a></li>
+                    <li><a class="dropdown-item" href="#">Bottom Wear</a></li>
+                </ul>
+            </div>
+            <div class="dropdown">
+                <a class="footer-link dropdown-toggle" href="#" id="policiesDropdownFooter" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Policies
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{% url 'privacy-policy' %}">Privacy Policy</a></li>
+                    <li><a class="dropdown-item" href="{% url 'why_choose_us' %}">Why Choose Us</a></li>
+                    <li><a class="dropdown-item" href="{% url 'payment_instructions' %}">Payment Instructions</a></li>
+                    <li><a class="dropdown-item" href="{% url 'order_cancellation_policy' %}">Order Cancellation</a></li>
+                </ul>
+            </div>
+        </div>
+        <small class="text-light copyright">Copyright &copy; 2024 || Designed By
+            <a href="https://burhanuddin-moriswala-portfolio.netlify.app/" target="_blank" class="text-decoration-none ">
+                Burhanuddin Moriswala 
+                <span class="burhan">B</span>
+            </a> || 
+        </small>
+       
+    
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'app/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'app/js/all.min.js' %}"></script>
+    <script src="{% static 'app/js/myscript.js' %}"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    
+    <script>
+        var prevScrollpos = window.pageYOffset;
+
+        window.onscroll = function () {
+            var currentScrollPos = window.pageYOffset;
+            if (prevScrollpos > currentScrollPos) {
+                document.getElementById("navbar").style.top = "0"; // Show navbar
+            } else {
+                document.getElementById("navbar").style.top = "-100px"; // Hide navbar (adjust if needed)
+            }
+            prevScrollpos = currentScrollPos;
+        };
+    </script>
+    <script>
+        // Disable right-click
+        document.addEventListener('contextmenu', function(event) {
+            event.preventDefault();
+        });
+    </script>
+</body>
+</html>

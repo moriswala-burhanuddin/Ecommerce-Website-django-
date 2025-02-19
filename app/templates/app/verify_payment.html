@@ -1,0 +1,11 @@
+    <!-- verify_payment.html -->
+<h1>Verify Payment for Order {{ order.id }}</h1>
+<p>Transaction ID: {{ transaction_id }}</p>
+<p>Order Details: {{ order.product.title }} (Quantity: {{ order.quantity }})</p>
+<p>Total Amount: Rs. {{ order.quantity * order.product.selling_price + 70 }}</p>
+
+<form method="POST" action="{% url 'confirm_order' %}">
+    {% csrf_token %}
+    <input type="hidden" name="order_id" value="{{ order.id }}">
+    <button type="submit" class="btn btn-success">Confirm Order</button>
+</form>

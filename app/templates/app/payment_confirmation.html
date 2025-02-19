@@ -1,0 +1,18 @@
+{% extends 'app/base.html' %}
+{% block title %}Payment Confirmation{% endblock title %}
+{% block main-content %}
+<div class="container block-main">
+    <h1 class="text-center mb-5">Payment Confirmation</h1>
+    
+    <h3>Order ID: {{ order_details.id }}</h3>
+    <p>Transaction ID: {{ transaction_id }}</p>
+    <p>Please keep this information for your records.</p>
+
+    <h4>Order Summary</h4>
+    <ul>
+        <li>Product: {{ order_details.product.name }}</li>
+        <li>Quantity: {{ order_details.quantity }}</li>
+        <li>Total Price: {{ order_details.product.discounted_price }}</li>
+    </ul>
+</div>
+{% endblock main-content %}

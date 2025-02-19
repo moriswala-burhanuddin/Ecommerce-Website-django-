@@ -1,0 +1,181 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Buy Now{% endblock title %}
+{% block main-content %}
+<div class="container-1">
+    <h3>Welcome <span class="text-capitalize text-light">{{ request.user.first_name }}</span></h3>
+    <div class="row">
+        <div class="col-sm-12">
+            <h4>Order Summary</h4>
+            <div class="card bg-dark mb-2 shadow">
+                <div class="card-body d-flex buynowscroll">
+                    <img src="{{ product.product_image.url }}" alt="" class="img-fluid img-thumbnail" height="150" width="150">
+                    <div class="ms-3">
+                        <h5>Product: {{ product.title }}</h5>
+                        <div class="d-flex align-items-center">
+                            <button class="btn btn-secondary" id="decrease-qty">-</button>
+                            <input type="number" id="quantity" value="1" class="form-control mx-2" style="width: 60px;" readonly>
+                            <button class="btn btn-secondary" id="increase-qty">+</button>
+                        </div>
+                        <p class="fw-bold mt-2" id="price">Price: Rs. {{ product.discounted_price }}</p>
+                    </div>
+                </div>
+            </div>
+            <small class="terms">Terms and Conditions:</small>
+            <div class="terms-details">
+                <p>
+                    By purchasing from our website, you agree to the following terms and conditions:
+                </p>
+                <ul>
+                    <li>All sales are final. Please make sure to review your order carefully before completing the purchase.</li>
+                    <li>We reserve the right to change prices and availability at any time without notice.</li>
+                    <li>Payment must be completed in full before orders are processed.</li>
+                    <li>In the event of a discrepancy in your order, please contact our customer support within 48 hours of receiving your product.</li>
+                    <li>Shipping and handling fees are non-refundable.</li>
+                    <li>For any returns, please follow our return policy available on the website.</li>
+                </ul>
+                <p>
+                    If you have any questions regarding these terms, please contact our support team for clarification.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-sm-12">
+            <h4>Checkout</h4>
+            <form method="POST" action="{% url 'individual_checkout' %}">
+                {% csrf_token %}
+                <input type="hidden" name="product_id" value="{{ product.id }}">
+                <input type="hidden" name="quantity" id="hidden-quantity" value="1">
+                <div class="text-end">
+                    <button type="submit" class="btn btn-warning mt-3 px-5 fw-bold">Continue</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<style>
+    .container-1{
+        max-width: 800px;
+        margin: auto;
+        margin-top:130px;
+        padding: 20px;
+        background-color: #2c3034;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        border-left:4px solid #dc3545;
+        margin-bottom:150px;
+    }
+
+    h3, h4 {
+        color: white;
+    }
+
+    .card {
+        border-right:4px solid #dc3545;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .card-body {
+        display: flex;
+        align-items: center;
+    }
+
+    .img-thumbnail {
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        color: white;
+        border: none;
+        transition: background-color 0.3s;
+    }
+
+    .btn-secondary:hover {
+        background-color: #5a6268;
+    }
+
+    .terms {
+        display: block;
+        margin-top: 15px;
+        font-size: 1.1rem;
+        border-bottom:4px solid #dc3545;   
+        padding: 10px;
+
+        border-radius: 5px;
+        
+    }
+
+    .terms-details {
+
+        border-radius: 5px;
+        padding: 15px;
+        margin-top: 10px;
+    }
+
+    .terms-details p {
+        margin: 0;
+        font-size: 0.95rem;
+    }
+
+    .terms-details ul {
+        margin: 10px 0;
+        padding-left: 20px;
+    }
+
+    .btn-warning {
+        background-color: #ffc107;
+        color: #212529;
+        border: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+
+    .btn-warning:hover {
+        background-color: #e0a800;
+    }
+    {% comment %} .block-main{
+        margin-top:400px;
+    } {% endcomment %}
+</style>
+
+<script>
+    const pricePerUnit = {{ product.discounted_price }};
+    const quantityInput = document.getElementById('quantity');
+    const priceDisplay = document.getElementById('price');
+    const hiddenQuantityInput = document.getElementById('hidden-quantity');
+
+    function updatePrice() {
+        const quantity = parseInt(quantityInput.value);
+        const totalPrice = pricePerUnit * quantity;
+        priceDisplay.innerText = 'Price: Rs. ' + totalPrice;
+    }
+
+    document.getElementById('increase-qty').addEventListener('click', function() {
+        let quantity = parseInt(quantityInput.value);
+        quantity++;
+        quantityInput.value = quantity;
+        hiddenQuantityInput.value = quantity; // Update hidden input
+        updatePrice();
+    });
+
+    document.getElementById('decrease-qty').addEventListener('click', function() {
+        let quantity = parseInt(quantityInput.value);
+        if (quantity > 1) {
+            quantity--;
+            quantityInput.value = quantity;
+            hiddenQuantityInput.value = quantity; // Update hidden input
+            updatePrice();
+        }
+    });
+
+    // Initial price display
+    updatePrice();
+</script>
+<script src="https://unpkg.com/scrollreveal"></script>
+{% endblock main-content %}

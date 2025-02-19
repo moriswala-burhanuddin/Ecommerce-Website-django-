@@ -1,0 +1,135 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Cart{% endblock title %}
+{% block main-content %}
+<div class="container block-main">
+    <h1 class="text-center mb-5">Shopping Cart</h1>
+    <div class="row">
+        <!-- Cart Section -->
+        <div class="col-sm-8">
+            <div class="card">
+                <div class="card-body cart-body-1">
+                    <h3>Cart</h3>
+                    {% for cart in carts %}
+                    <hr class="text-muted">
+                    <div class="row">
+                        <div class="col-sm-3 text-center align-self-center">
+                            <img src="{{cart.product.product_image.url}}" alt="" class="img-fluid img-thumbnail shadow-sm" height="150" width="150">
+                        </div>
+                        <div class="col-sm-9 cart-pd">
+                            <div>
+                                <h5>{{cart.product.title}}</h5>
+                                <p class="mb-2 text-muted small">
+                                    {{cart.product.description}}
+                                </p>
+                                <p class="mb-2 text-muted small"><strong>Size:</strong> {{ cart.product.size }}</p> 
+                                <div class="my-3">
+                                    <label for="quantity">Quantity:</label>
+                                    <div class="d-inline-flex align-items-center">
+                                        <a class="minus-cart btn" pid="{{cart.product.id}}"><i class="text-light text-bold display-6">-</i></a>
+                                        <span class="mx-2" id="quantity">{{cart.quantity}}</span>
+                                        <a class="plus-cart btn" pid="{{cart.product.id}}"><i class="text-light text-bold display-6">+</i></a>
+                                    </div>
+                                </div>
+                                
+                                <div class="d-flex justify-content-between">
+                                    <a href="#" class="remove-cart btn btn-sm btn-secondary mr-3" pid="{{cart.product.id}}">Remove item</a>
+                                    <p class="mb-0 "><span><strong>Rs. {{cart.product.discounted_price}}</strong></span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Amount Section -->
+        <div class="col-sm-4">
+            <div class="card">
+                <div class="card-body payments-b">
+                    <h3>The Total Amount of</h3>
+                    <div class="listgd">
+                        <ul class="list-group ">
+                            <li class="list-group-item d-flex justify-content-between align-items-center  px-2 pb-0">Amount<span>Rs. <span id="amount">{{amount}}</span></span></li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center px-2">Shipping<span>Rs. 70.00</span></li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center  px-2 mb-3">
+                                <div>
+                                    <strong>Total</strong> <small>(including VAT)</small>
+                                </div>
+                                <span><strong>Rs. <span id="totalamount">{{totalamount}}</span></strong></span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="d-grid"><a href="{% url 'new_checkout' %}" class="btn btn-primary">Place Order</a></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- AJAX Script -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    // Plus button AJAX call
+    $('.plus-cart').click(function(){
+        var id = $(this).attr("pid").toString();
+        var eml = this.parentNode.children[1]; // Quantity span
+        
+        $.ajax({
+            type: "GET",
+            url: "/pluscart",
+            data: {
+                prod_id: id
+            },
+            success: function(data){
+                eml.innerText = data.quantity;
+                document.getElementById("amount").innerText = data.amount;
+                document.getElementById("totalamount").innerText = data.totalamount;
+            }
+        });
+    });
+
+    // Minus button AJAX call
+    $('.minus-cart').click(function(){
+        var id = $(this).attr("pid").toString();
+        var eml = this.parentNode.children[1];
+        
+        $.ajax({
+            type: "GET",
+            url: "/minuscart",
+            data: {
+                prod_id: id
+            },
+            success: function(data){
+                eml.innerText = data.quantity;
+                document.getElementById("amount").innerText = data.amount;
+                document.getElementById("totalamount").innerText = data.totalamount;
+            }
+        });
+    });
+
+    // Remove button AJAX call
+    $('.remove-cart').click(function(){
+        var id = $(this).attr("pid").toString();
+        var cart_item = this.closest('.row'); // Select the cart item row
+        
+        $.ajax({
+            type: "GET",
+            url: "/removecart",
+            data: {
+                prod_id: id
+            },
+            success: function(data){
+                cart_item.remove(); // Remove the cart item from the DOM
+                document.getElementById("amount").innerText = data.amount;
+                document.getElementById("totalamount").innerText = data.totalamount;
+            }
+        });
+    });
+</script>
+<script src="https://unpkg.com/scrollreveal"></script>
+{% endblock main-content %}

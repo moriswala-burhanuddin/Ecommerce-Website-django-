@@ -1,0 +1,16 @@
+{% extends 'app/base.html' %}
+{% block title %}Order Status{% endblock title %}
+{% block main-content %}
+<div class="container my-5">
+    <h1 class="text-center mb-5">Order Status</h1>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+    
+    <h4>To check your order status:</h4>
+    <p>Please enter your Order ID and Transaction ID on the payment page.</p>
+</div>
+{% endblock main-content %}

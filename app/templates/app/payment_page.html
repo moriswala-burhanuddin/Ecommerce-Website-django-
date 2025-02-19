@@ -1,0 +1,44 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Payment{% endblock title %}
+{% block main-content %}
+<div class="container block-main">
+    <h1 class="text-center mb-5">Payment</h1>
+    <div class="text-center">
+        <h4>Total Amount: Rs. {{ total_amount }}</h4>
+        <h5>Scan the QR Code to Pay</h5>
+        
+        <!-- Updated image src -->
+        <img src="{{ qr_code_url }}" alt="QR Code" class="img-fluid mx-auto" style="max-width: 300px;" />
+
+
+        <p>Please scan the QR code with your payment app to complete the transaction.</p>
+        
+        <form method="GET" action="{% url 'new_confirm_payment' order_id=order_id %}" id="payment-form">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary">I have completed the payment</button>
+        </form>
+    </div>
+    <div class="alert alert-warning mt-4">
+        <h4>Important Instructions:</h4>
+        <p>Your order will be confirmed within 2 hours after payment verification.</p>
+        <p>If you do not complete your payment, you may incur a fine, and your order will not be confirmed.</p>
+        <p>Please be aware that we take integrity seriously; attempts to cheat the system will not be tolerated. We are experienced developers committed to secure transactions.</p>
+        <p>If your order status is not accepted, please email us at <a href="mailto:info.burhani.sgg@gmail.com">burhanuddinmoris@gmail.com</a>. Share your payment screenshot as a PDF in the email along with your order ID.</p>
+    </div>
+</div>
+
+<script>
+    document.getElementById('payment-form').addEventListener('submit', function() {
+        this.querySelector('button[type="submit"]').innerText = 'Processing...';
+        this.querySelector('button[type="submit"]').disabled = true;
+    });
+</script>
+
+<script>
+    // Disable right-click
+    document.addEventListener('contextmenu', function(event) {
+        event.preventDefault();
+    });
+</script>
+{% endblock main-content %}

@@ -1,0 +1,98 @@
+{% extends 'app/base.html' %}
+{% block title %}Order Confirmation{% endblock title %}
+{% block main-content %}
+<div class="container block-main">
+    <h1 class="text-center mb-5">Order Confirmation</h1>
+    <div class="text-center">
+        <h2>Order ID: {{ order.id }}</h2>
+        <div class="order-grid">
+            {% for order in orders %}
+                <div class="order-item">
+                    <h3>Product: {{ order.product.title }}</h3>
+                    <img src="{{ order.product.product_image.url }}" alt="{{ order.product.title }}">
+                    <p>Quantity: {{ order.quantity }}</p>
+                    <p>Price: Rs. {{ order.product.discounted_price }}</p>
+                    <p>Status: {{ order.status }}</p>
+                    <p>Date: {{ order.created_at|date:"d M Y" }}</p>
+                </div>
+            {% endfor %}
+        </div>
+        <a href="{% url 'orders' %}" class="btn btn-primary">View Order History</a>
+    </div>
+
+
+
+
+    <style>
+        .container {
+            max-width: 1200px; /* Increased for larger screens */
+            margin: auto;
+            padding: 20px;
+        }
+    
+        h1, h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+    
+        .order-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* Default to 2 columns */
+            gap: 20px; /* Space between grid items */
+        }
+    
+        @media (min-width: 768px) {
+            .order-grid {
+                grid-template-columns: repeat(4, 1fr); /* 4 columns for larger screens */
+            }
+        }
+    
+        .order-item {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+    
+        .order-item:hover {
+            transform: scale(1.02);
+        }
+    
+        .order-item img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+    
+        .order-item p {
+            margin: 5px 0;
+            color: #555;
+        }
+    
+        .btn-primary {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+    
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+    
+        hr {
+            border: none;
+            height: 1px;
+            background-color: #eee;
+            margin: 20px 0;
+        }
+    </style>
+    
+    
+</div>
+{% endblock main-content %}

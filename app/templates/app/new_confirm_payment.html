@@ -1,0 +1,31 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block title %}Confirm Payment{% endblock title %}
+{% block main-content %}
+<div class="container block-main">
+    <h1 class="text-center mb-5">Confirm Payment</h1>
+
+    <div class="text-center">
+        <p class="mb-4">Please enter your transaction ID below to confirm your payment. Make sure you have completed the payment process before submitting. If you do not complete the payment, your order will not be confirmed.</p>
+        
+        <p class="alert alert-info">The transaction ID can be found in your payment receipt or confirmation email.</p>
+
+        <form method="POST" action="{% url 'confirm_order' order_id=order_id %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="transaction_id">Transaction ID</label>
+                <input type="text" class="form-control" id="transaction_id" name="transaction_id" placeholder="Enter your transaction ID" required autocomplete="off">
+            </div>
+            <button type="submit" class="btn btn-success mt-3">Confirm Order</button>
+        </form>
+
+        <div class="mt-4">
+            <p>If you have any questions or need assistance, please contact our support team.</p>
+            <p><strong>Support Email:</strong> support@example.com</p>
+            <p><strong>Support Phone:</strong> +1 234 567 890</p>
+        </div>
+    </div>
+</div>
+<script src="https://unpkg.com/scrollreveal"></script>
+{% endblock main-content %}

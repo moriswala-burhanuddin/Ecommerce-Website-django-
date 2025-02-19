@@ -1,0 +1,49 @@
+{% extends 'app/base.html' %}
+{% block title %}Edit Address{% endblock %}
+
+{% block main-content %}
+  <div class="container block-main mb-5">
+    <h3>Edit Address</h3>
+    <form method="POST">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="name">Full Name</label>
+        <input type="text" name="name" id="name" class="form-control" value="{{ customer.name }}" required>
+      </div>
+
+      <div class="form-group">
+        <label for="locality">Locality</label>
+        <input type="text" name="locality" id="locality" class="form-control" value="{{ customer.locality }}" required>
+      </div>
+
+      <div class="form-group">
+        <label for="city">City</label>
+        <input type="text" name="city" id="city" class="form-control" value="{{ customer.city }}" required>
+      </div>
+
+      <div class="form-group">
+        <label for="state">State</label>
+        <select name="state" id="state" class="form-control">
+            {% for state, state_name in STATE_CHOICES %}
+                <option value="{{ state }}" {% if customer.state == state %} selected {% endif %}>
+                    {{ state_name }}
+                </option>
+            {% endfor %}
+        </select>
+    </div>
+    
+
+      <div class="form-group">
+        <label for="zipcode">Zip Code</label>
+        <input type="text" name="zipcode" id="zipcode" class="form-control" value="{{ customer.zipcode }}" required>
+      </div>
+
+      <div class="form-group">
+        <label for="phone_number">Phone Number</label>
+        <input type="text" name="phone_number" id="phone_number" class="form-control" value="{{ customer.phone_number }}" required>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Save Changes</button>
+    </form>
+  </div>
+{% endblock %}

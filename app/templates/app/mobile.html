@@ -1,0 +1,49 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block title %} 
+Mobile
+{% endblock title %}
+
+{% block main-content %}
+<div class="container block-main">
+  <div class="row">
+    <div class="col-md-3">
+      <div class=" sidebar">
+        <a href="{% url 'mobile' %}" class="  display-6 text-dark">All Tshirts</a>
+        <p class="text-dark color">Color</p>
+        <a href="{% url 'mobiledata' 'Pink' %}" class="Pink"><span></span>Pink</a>
+        <a href="{% url 'mobiledata' 'Blue' %}" class="Blue"><span></span>Blue</a>
+        <a href="{% url 'mobiledata' 'Black' %}" class="Black"><span></span>Black</a>
+        <a href="{% url 'mobiledata' 'White' %}" class="White"><span></span>White</a>
+        <a href="{% url 'mobiledata' 'Brown' %}" class="Brown"><span></span>Brown</a>
+        <a href="{% url 'mobiledata' 'Orange' %}" class="Orange"><span></span>Orange</a>
+        <a href="{% url 'mobiledata' 'below' %}" class="">Below 1000 Rs.</a>
+        <a href="{% url 'mobiledata' 'above' %}" class="">Above 500 Rs.</a>
+
+      </div>  
+    </div>
+
+    <div class="col-md-9">
+      <div class="row">
+        {% for product in mobiles %}
+        <div class="col-sm-6 col-md-4 text-center mb-4 ">
+          <a href="{% url 'product-detail' product.id %}" class="product-details text-decoration-none">
+            <div class="item shadow shadow-lg text-decoration-none">
+              <img src="{{product.product_image.url}}" alt="{{product.title}}" class="product-image" />
+              <div class="product-info1">
+                
+                <h5 class="product-title text-dark">{{ product.title }}</h5>
+                <del><p class="product-price text-dark" >Rs. {{ product.selling_price }}</p></del>
+                <p class="product-price">Rs. {{ product.discounted_price }}</p>
+            </div>
+              
+            </div>
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock main-content %}

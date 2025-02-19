@@ -1,0 +1,46 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block title %}
+Customer Registration
+{% endblock title %}
+
+{% block main-content %}
+<div class="container block-main">
+    <div class="custom-row custom-my-3">
+        <div class="custom-col custom-offset">
+            <h3>Customer Registration</h3>
+            <hr>
+
+            <form action="" method="post" novalidate class="custom-form">
+               {% if messages %}
+                  {% for message in messages %}
+                  <p {% if message.tags %} class="custom-alert bg-success p-3 custom-{{message.tags}}"{%endif%}>{{message}}</p>   
+                  {% endfor %}
+               {% endif %}
+               
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="custom-form-group">
+                        {{ field.label_tag }} {{ field }}
+                        <small class="custom-error">{{ field.errors|striptags }}</small>
+                    </div>
+                {% endfor %}
+                <p class="custom-note">You will use this email to reset your password if you forget it.</p>
+                <button type="submit" value="Submit" class="custom-button-1 text-light">Submit</button>
+                <br>
+                <div class="custom-text-center">
+                    <small>Existing User? <a href="{% url 'login' %}" class="custom-link">Login Now</a></small>
+                </div>
+                
+                {% if form.non_field_errors %}
+                    {% for error in form.non_field_errors %}
+                        <p class="custom-alert-danger">{{ error }}</p>
+                    {% endfor %}
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</div>
+<script src="https://unpkg.com/scrollreveal"></script>
+{% endblock main-content %}

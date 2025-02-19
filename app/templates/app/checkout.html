@@ -1,0 +1,57 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block title %}Checkout{% endblock title %}
+{% block main-content %}
+<div class="container my-5">
+    <h1 class="text-center mb-5">Order Summary</h1>
+
+    <h3>Products</h3>
+    <div class="row">
+        {% if products_details %}
+            {% for item in products_details %}
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="{{ item.product.product_image.url }}" class="card-img-top" alt="{{ item.product.title }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ item.product.title }}</h5>
+                        <p class="card-text">Price: Rs. {{ item.price }}</p>
+                        <p class="card-text">Quantity: {{ item.quantity }}</p>
+                        <p class="card-text">Total: Rs. {{ item.total }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>No items in your cart. Please add items to proceed.</p>
+        {% endif %}
+    </div>
+
+    <h3 class="mt-4">Shipping Address</h3>
+    {% if address %}
+    <p><strong>{{ address.name }}</strong></p>
+    <p>{{ address.locality }}</p>
+    <p>{{ address.city }}</p>
+    <p>{{ address.state }}</p>
+    <p>{{ address.zipcode }}</p>
+    {% else %}
+    <p>No address found. Please add an address to proceed.</p>
+    {% endif %}
+    <h3 class="mt-4">Summary</h3>
+    <p>Subtotal: Rs. {{ total_amount }}</p>
+    <p>Shipping: Rs. 70.00</p>
+    <h4>Total Amount: Rs. {{ total_amount|add:70 }}</h4>
+    
+    {% if products_details %}
+    <div class="d-grid">
+        <form action="{% url 'payment' id=order_ids.0 %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="order_id" value="{{ order_ids.0 }}">
+            <button type="submit">Proceed to Payment</button>
+        </form>
+    </div>
+    {% endif %}
+    
+</div>
+<script src="https://unpkg.com/scrollreveal"></script>
+{% endblock main-content %}

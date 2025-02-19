@@ -1,0 +1,105 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block title %}Profile{% endblock title %}
+
+{% block main-content %}
+<style>
+  
+
+  /* Form Input Styles */
+  .form-group {
+    margin-bottom: 15px;
+  }
+
+  .form-control {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border:none;
+    outline:none;
+    
+  }
+  .form-p input{
+    background:#343a40;
+    border-bottom: 3px solid rgb(249, 228, 31) ;
+    color:white;
+  }
+  .form-p input:focus {
+    background:#343a40;
+    border-bottom: 3px solid rgb(249, 228, 31) ;
+    color:white;
+    border:none;
+    outline:none;
+  }
+
+  .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+
+  .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+  }
+
+  .alert {
+    margin-bottom: 20px;
+  }
+
+</style>
+
+<div class="container block-main">
+  <div class="row">
+    <h3>Welcome <span class="text-capitalize bg-warning p-2 mb-3">{{ request.user }}</span></h3>
+    <div class="col-sm-2 sidebar-p">
+      <ul class="list-unstyled">
+        <li class="d-grid">
+          <a href="{% url 'profile' %}" class="btn bg-light text-dark{% if active == 'profile' %} active{% endif %}">Profile</a>
+        </li>
+        <li class="d-grid">
+          <a href="{% url 'address' %}" class="btn{% if active == 'address' %} active{% endif %}">Address</a>
+        </li>
+      </ul>
+    </div>
+    
+    <div class="col-sm-8 offset-sm-1">
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-{{ message.tags }} mb-3 text-center">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+      
+      <form action="" method="post" novalidate enctype="multipart/form-data" class="form-p">
+        {% csrf_token %}
+        
+        <div class="row">
+          <div class="col-md-8">
+            <!-- Iterate through form fields for other profile information -->
+            {% for field in form %}
+              {% if field.name != 'profile_picture' %} <!-- Skip profile_picture field as it is removed -->
+              <div class="form-group">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                {% if field.errors %}
+                  <small class="text-danger">{{ field.errors|striptags }}</small>
+                {% endif %}
+              </div>
+              {% endif %}
+            {% endfor %}
+            
+            <div class="col-12 mt-3">
+              <button type="submit" class="btn bg-warning mb-3">Save Changes</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="https://unpkg.com/scrollreveal"></script>
+
+{% endblock main-content %}
