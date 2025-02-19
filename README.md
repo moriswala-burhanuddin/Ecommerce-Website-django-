@@ -23,7 +23,8 @@ Product Filters: Advanced filters allow users to easily find products
 3: pip install -r requirements.txt
 
 <br>
-4: apply migrations python manage.py migrations 
+4: apply migrations:  
+  python manage.py makemigrations 
   python manage.py migrate
 
 <br>
