@@ -13,3 +13,7 @@ Order Status Tracking: Users can check the status of their orders in real time.
 Order Summary: Provides a detailed summary of orders for easy reference.
 Order Cancellation: Users have the option to cancel their orders within specified time limits.
 Product Filters: Advanced filters allow users to easily find products
+
+<br>
+1: Clone the Repository 
+2: 
